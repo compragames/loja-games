@@ -1,6 +1,7 @@
-CREATE DATABASE postostades;
+CREATE DATABASE lojagames;
 
-USE postostades;
+
+USE lojagames;
 
 CREATE TABLE Filial(
 IdFilial INT(11) AUTO_INCREMENT NOT NULL,
@@ -75,7 +76,7 @@ CREATE TABLE Venda(
 IdVenda INT(11) AUTO_INCREMENT NOT NULL,
 ValorTotal DOUBLE NOT NULL,
 DataVenda DATE NOT NULL,
-IdCliente INT(11) NOT NULL,
+IdCliente INT(11),
 IdFilial INT(11) NOT NULL,
 PRIMARY KEY(IdVenda),
 FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente),
@@ -85,15 +86,21 @@ FOREIGN KEY (IdFilial) REFERENCES Filial(IdFilial)
 CREATE TABLE ItemVenda(
 IdProduto INT(11) NOT NULL,
 IdVenda INT(11) NOT NULL,
-Quantidade INT(11) NOT NULL,
+Quantidade DOUBLE NOT NULL,
 PRIMARY KEY (IdProduto, IdVenda),
 FOREIGN KEY (IdProduto) REFERENCES Produto(IdProduto),
 FOREIGN KEY (IdVenda) REFERENCES Venda(IdVenda)
 );
-
 
 INSERT INTO Filial (nome, estado, endereco, cep) VALUES ('Filial 1', 'SP', 'Av etc, 121', '11111-111');
 INSERT INTO Filial (nome, estado, endereco, cep) VALUES ('Filial 2', 'RJ', 'Av etc, 121', '11111-111');
 INSERT INTO Filial (nome, estado, endereco, cep) VALUES ('Filial 3', 'MG', 'Av etc, 121', '11111-111');
 INSERT INTO Filial (nome, estado, endereco, cep) VALUES ('Filial 4', 'RS', 'Av etc, 121', '11111-111');
 INSERT INTO Filial (nome, estado, endereco, cep) VALUES ('Filial 5', 'BA', 'Av etc, 121', '11111-111');
+
+INSERT INTO Funcionario (nome, endereco, cep, cpf, DataNascimento, DataInclusao, Tipo) VALUES ('Victor', 'Av Teste', '00000-000', 
+'111.111.111-11', '1990-05-06', '1990-05-06', 'Rh'); 
+INSERT INTO Usuario (IdFuncionario, Email, Senha) VALUES (1, 'rh@teste.com', '123');
+
+
+
