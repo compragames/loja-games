@@ -1,5 +1,5 @@
 
-# Projeto: Posto de Gasolina
+# Projeto: Loja de Games
 
 Sistema de gerenciamento de posto de gasolina, para controle de vendas por filial
 
