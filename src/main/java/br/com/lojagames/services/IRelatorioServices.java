@@ -2,7 +2,7 @@ package br.com.lojagames.services;
 
 /**
  *
- * @author erick.ogurian
+ * @author victor.ogurian
  */
 public interface IRelatorioServices  {
     

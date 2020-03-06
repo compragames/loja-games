@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebServlet(name = "EditarFisicoServlet", urlPatterns = {"/vendedor/editar-fisico"})
 public class EditarFisicoServlet extends HttpServlet {

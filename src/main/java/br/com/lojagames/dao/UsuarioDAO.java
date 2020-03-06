@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 public class UsuarioDAO {
     

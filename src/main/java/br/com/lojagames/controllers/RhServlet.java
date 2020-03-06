@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick.ogurian
+ * @author victor.ogurian
  */
 @WebServlet(name = "RhServlet", urlPatterns = {"/rh"})
 public class RhServlet extends HttpServlet {

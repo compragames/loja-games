@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 public class Funcionario extends Usuario{
     private int id;

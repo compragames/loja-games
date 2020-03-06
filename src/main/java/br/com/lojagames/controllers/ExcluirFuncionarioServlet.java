@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebServlet(name = "ExcluirFuncionarioServlet", urlPatterns = {"/rh/excluir-funcionario"})
 public class ExcluirFuncionarioServlet extends HttpServlet {

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebServlet(name = "CadastrarProdutoServlet", urlPatterns = {"/backoffice/cadastrar-produto"})
 public class CadastrarProdutoServlet extends HttpServlet {

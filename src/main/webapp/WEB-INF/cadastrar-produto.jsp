@@ -81,9 +81,9 @@
             <div class="form-group row">
                 <label for="inputEmail" class="col-md-1 offset-md-2">Filial*:</label>
                 <div class="form-check-inline">
-                     <c:forEach items="${filiaisAttr}" var="filial">
-                         <input class="form-check-input" type="radio" name="filial" id="${filial}" value="${filial}" required>
-                         <label class="form-check-label" for="filial"><c:out value="${filial}" /></label>
+                    <c:forEach items="${filiaisAttr}" var="filial">
+                        <input class="form-check-input" type="radio" name="filial" id="${filial}" value="${filial}" required>
+                        <label class="form-check-label" for="filial"><c:out value="${filial}" /></label>
                     </c:forEach>
                 </div>
             </div>
@@ -93,7 +93,21 @@
                 <a href="${pageContext.request.contextPath}/backoffice" class="col-md-2 btn btn-lg btn-danger">Cancelar</a>
             </div>
         </form>
+
+        <form action="upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="file"/> 
+            <input type="submit" value="Enviar" />
+        </form>
+        <label>${message}</label>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <form action="upload" method="get" >
+            <input type="submit" value="Visalizar imagem" />
+        </form>
+
     </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
-<script src="https://kit.fontawesome.com/1803175e4f.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+    <script src="https://kit.fontawesome.com/1803175e4f.js" crossorigin="anonymous"></script>
 </html>

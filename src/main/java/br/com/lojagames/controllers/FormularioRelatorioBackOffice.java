@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick.ogurian
+ * @author victor.ogurian
  */
 @WebServlet(name = "FormularioRelatorioBackOffice", urlPatterns = {"/backoffice/visualizar-vendas"})
 public class FormularioRelatorioBackOffice extends HttpServlet {

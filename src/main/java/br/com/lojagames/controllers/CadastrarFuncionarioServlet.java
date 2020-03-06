@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author erick.ogurian
+ * @author victor.ogurian
  */
 @WebServlet(name = "CadastrarFuncionarioServlet", urlPatterns = {"/rh/cadastrar-funcionario"})
 public class CadastrarFuncionarioServlet extends HttpServlet {

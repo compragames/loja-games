@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebServlet(name = "ExcluirClienteServlet", urlPatterns = {"/vendedor/excluir-cliente"})
 public class ExcluirClienteServlet extends HttpServlet {

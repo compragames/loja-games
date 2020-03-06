@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebServlet(name = "DiretorServlet", urlPatterns = {"/diretor"})
 public class DiretorServlet extends HttpServlet {

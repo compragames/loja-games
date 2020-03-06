@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 public class ClienteDAO implements IDao{
 

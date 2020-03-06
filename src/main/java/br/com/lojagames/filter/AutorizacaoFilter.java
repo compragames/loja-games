@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebFilter(filterName = "AutorizacaoFilter",
         urlPatterns = { "/backoffice/*",

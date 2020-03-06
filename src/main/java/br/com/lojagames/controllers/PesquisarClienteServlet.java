@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebServlet(name = "PesquisarCliente", urlPatterns = {"/vendedor/pesquisa-de-cliente"})
 public class PesquisarClienteServlet extends HttpServlet {

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebServlet(name = "EditarJuridicoServlet", urlPatterns = {"/vendedor/editar-juridico"})
 public class EditarJuridicoServlet extends HttpServlet {

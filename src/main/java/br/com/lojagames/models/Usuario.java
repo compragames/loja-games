@@ -2,7 +2,7 @@ package br.com.lojagames.models;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 public class Usuario {
     

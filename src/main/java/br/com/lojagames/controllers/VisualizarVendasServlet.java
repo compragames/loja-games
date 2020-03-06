@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebServlet(name = "VisualizarVendasServlet", urlPatterns = {"/backoffice/visualizacao-de-vendas"})
 public class VisualizarVendasServlet extends HttpServlet {

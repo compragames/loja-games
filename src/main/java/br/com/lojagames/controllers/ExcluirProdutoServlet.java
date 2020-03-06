@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebServlet(name = "ExcluirProdutoServlet", urlPatterns = {"/backoffice/excluir-produto"})
 public class ExcluirProdutoServlet extends HttpServlet {

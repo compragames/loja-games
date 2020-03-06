@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 public class FuncionarioDAO implements IDao{
 

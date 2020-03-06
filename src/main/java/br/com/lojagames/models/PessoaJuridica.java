@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 public class PessoaJuridica extends Cliente{
     

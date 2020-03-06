@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 public class Rh extends Funcionario{
     

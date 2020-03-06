@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {

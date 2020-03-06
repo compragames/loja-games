@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebServlet(name = "FormularioRelatoriosGerenteServlet", urlPatterns = {"/gerente-vendas/emitir-relatorio"})
 public class FormularioRelatoriosGerenteServlet extends HttpServlet {

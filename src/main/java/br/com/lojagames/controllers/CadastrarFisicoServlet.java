@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebServlet(name = "CadastrarFisicoServlet", urlPatterns = {"/vendedor/cadastrar-fisico"})
 public class CadastrarFisicoServlet extends HttpServlet {

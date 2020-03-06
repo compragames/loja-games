@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erick
+ * @author victor
  */
 @WebServlet(name = "FormularioPesquisarProdutoServlet", urlPatterns = {"/backoffice/pesquisar-produto"})
 public class FormularioPesquisarProdutoServlet extends HttpServlet {
