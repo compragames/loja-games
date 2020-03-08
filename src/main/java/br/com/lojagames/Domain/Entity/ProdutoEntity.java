@@ -22,6 +22,15 @@ public class ProdutoEntity extends Entity{
     private int qtdEstoque;
     private double valorUnitario;
     private int idEmpresa;
+    private boolean disponivel;
+
+    public boolean getDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
 
     public ProdutoEntity() {
     }
