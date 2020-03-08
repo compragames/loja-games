@@ -9,7 +9,7 @@ public interface IProdutoServices<T> {
 
     public T cadastroProduto(ProdutoModel produto, Token token);
 
-        public T cadastroProduto(ProdutoModel produto, String token);
+    public T cadastroProduto(ProdutoModel produto, String token);
 
     public T deletarProduto(ProdutoModel produto, Token token);
 

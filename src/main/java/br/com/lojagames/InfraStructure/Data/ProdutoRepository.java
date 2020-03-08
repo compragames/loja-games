@@ -21,7 +21,7 @@ public class ProdutoRepository extends IRepository implements IProdutoRepository
         produto.setDisponivel(true);
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO Produto "
-                + "(Nome, TipoProduto, QntEstoque, ValorUnitario, IdFilial)"
+                + "(NOME, TIPOPRODUTO, QNTESTOQUE, VALORUNITARIO, IDEMPRESA)"
                 + "VALUES (?, ?, ?, ?, ?)");
         this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
         prepareStatement.setString(1, produto.getNome());
