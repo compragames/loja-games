@@ -25,6 +25,10 @@ public class ProdutoModel extends Model {
     public int getIdProduto() {
         return idProduto;
     }
+      public void setIdProduto(int id) {
+          this.idProduto = id;
+          }
+
 
   
     public String getNome() {
@@ -75,5 +79,8 @@ public class ProdutoModel extends Model {
         return produtoEntity;
 
     }
+
+  
+ 
 
 }
