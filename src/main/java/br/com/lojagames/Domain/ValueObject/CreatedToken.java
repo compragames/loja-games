@@ -6,7 +6,7 @@
 package br.com.lojagames.Domain.ValueObject;
 
 import br.com.lojagames.Application.DTO.Token;
-import br.com.lojagames.Interface.Controller.CreatedTokenAbstract;
+import br.com.lojagames.Interface.RestController.CreatedTokenAbstract;
 import com.google.gson.Gson;
 import com.mysql.cj.xdevapi.JsonParser;
 import java.io.UnsupportedEncodingException;

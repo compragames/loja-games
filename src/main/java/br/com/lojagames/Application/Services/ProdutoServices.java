@@ -94,7 +94,7 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
 
     @Override
     public List<Model> listarProdutos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("parei aqui  mas não devolvi nada"); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
