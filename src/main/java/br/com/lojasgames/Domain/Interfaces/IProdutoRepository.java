@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.lojasgames.Domain.Interfaces;
 
 import br.com.lojagames.Domain.Entity.ProdutoEntity;
@@ -19,6 +14,7 @@ import java.sql.SQLException;
 public interface IProdutoRepository {
 
     public int inserir(ProdutoEntity produto, Connection conexao) throws SQLException;
+     public int inserirImagem(int id, Connection conexao) throws SQLException;
 
     public ResultSet busca(Connection conexao) throws SQLException;
 

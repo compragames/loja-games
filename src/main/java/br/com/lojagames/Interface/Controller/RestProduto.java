@@ -8,16 +8,20 @@ package br.com.lojagames.Interface.Controller;
 import br.com.lojagames.Application.IService.IProdutoServices;
 import br.com.lojagames.Application.Model.ProdutoModel;
 import com.google.gson.Gson;
+import java.io.InputStream;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 
 @Path("produto")
 public class RestProduto {
@@ -52,5 +56,20 @@ public class RestProduto {
         ProdutoModel produtos = (ProdutoModel) this.gson.fromJson(content, ProdutoModel.class);
 
         return this.gson.toJson(this.iProdutoServices.cadastroProduto(produtos, ""));
+    }
+    
+   //@Safe
+    @POST
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Path("image/{id}") 
+    public String insert(
+            @FormDataParam("image") InputStream fileInputStream,
+            @FormDataParam("image") FormDataContentDisposition fileMetaData,
+            @PathParam("id") int id
+           ) {
+        
+       // Token token = CreatedToken.decodeToken(header);
+        
+        return this.gson.toJson(this.iProdutoServices.inserirImagem(id,fileInputStream, fileMetaData));
     }
 }

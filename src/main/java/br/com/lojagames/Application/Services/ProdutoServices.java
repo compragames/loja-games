@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import javax.inject.Inject;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
 public class ProdutoServices extends Services implements IProdutoServices<Model> {
 
@@ -96,5 +97,34 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
     public List<Model> listarProdutos() {
         throw new UnsupportedOperationException("parei aqui  mas não devolvi nada"); //To change body of generated methods, choose Tools | Templates.
     }
+
+
+    @Override
+    public Object inserirImagem(int id, InputStream fileInputStream, FormDataContentDisposition fileMetaData) {
+   
+          ReturnModel retorno = new ReturnModel();
+
+        try {
+            //verifica o token 
+            //verifica permissao
+            getConnectOpen();
+//metodo de inserir produto no banco 
+         System.out.println(fileInputStream);
+            getConnectClose();
+            retorno.setRetorno(true);
+            retorno.setTxtRetorno("Imagem cadastrada com sucesso");
+            retorno.setId(id);
+            return retorno;
+
+        } catch (SQLException e) {
+            getConnectClose();
+            retorno.setRetorno(false);
+            retorno.setTxtRetorno("Erro ao tentar cadastrar produto");
+            return retorno;
+        }
+        
+    }
+
+  
 
 }

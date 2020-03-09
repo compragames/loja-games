@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class ModelConnection {
 
     private static final String SERVER = "localhost:3306";
-    private static final String DATABASE = "LOJAGAMES";
+    private static final String DATABASE = "lojagames";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
     public static Connection conectorProd() {
