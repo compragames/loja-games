@@ -1,4 +1,4 @@
-package br.com.lojasgames.Domain.Interfaces;
+package br.com.lojagames.Domain.Interfaces;
 
 import br.com.lojagames.Domain.Entity.ProdutoEntity;
 import java.io.InputStream;

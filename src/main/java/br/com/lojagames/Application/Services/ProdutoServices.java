@@ -6,7 +6,8 @@ import br.com.lojagames.Application.Model.Model;
 import br.com.lojagames.Application.Model.ProdutoModel;
 import br.com.lojagames.Application.Model.ReturnModel;
 import br.com.lojagames.Domain.Entity.ProdutoEntity;
-import br.com.lojasgames.Domain.Interfaces.IProdutoRepository;
+import br.com.lojagames.Domain.Interfaces.IProdutoRepository;
+import java.io.File;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,7 +70,7 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
     }
 
     @Override
-    public Model cadastroProduto(ProdutoModel produto, String token) {
+    public Model cadastroProduto(ProdutoModel produto, String token, File file) {
         ReturnModel retorno = new ReturnModel();
 
         try {
@@ -101,8 +102,10 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
 
     @Override
     public Object inserirImagem(int id, InputStream fileInputStream, FormDataContentDisposition fileMetaData) {
-   
+   String path = null;
           ReturnModel retorno = new ReturnModel();
+          File img = new File(path);
+          
 
         try {
             //verifica o token 

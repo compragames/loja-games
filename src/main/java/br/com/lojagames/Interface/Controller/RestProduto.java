@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.lojagames.Interface.Controller;
 
 import br.com.lojagames.Application.IService.IProdutoServices;
 import br.com.lojagames.Application.Model.ProdutoModel;
+import br.com.lojagames.InfraStructure.ExternalServices.UploadImageAWS;
 import com.google.gson.Gson;
+import java.io.File;
 import java.io.InputStream;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -49,27 +46,34 @@ public class RestProduto {
 
     //  @Safe
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Path("insert")
-    public String insertPost(String content, @HeaderParam("Authorization") String header) {
+    public String insertPost(String content,
+            @HeaderParam("Authorization") String header,
+            @FormDataParam("image") InputStream fileInputStream,
+            @FormDataParam("image") FormDataContentDisposition fileMetaData,
+            @FormDataParam("products") String list
+    ) {
         //Token token = CreatedToken.decodeToken(header);
         ProdutoModel produtos = (ProdutoModel) this.gson.fromJson(content, ProdutoModel.class);
+         
+        //bytesToImage(fileInputStream, fileMetaData);
+             File file = new UploadImageAWS().bytesToImage(fileInputStream, fileMetaData);
 
-        return this.gson.toJson(this.iProdutoServices.cadastroProduto(produtos, ""));
+        return this.gson.toJson(this.iProdutoServices.cadastroProduto(produtos, "",file));
     }
-    
-   //@Safe
+
+    //@Safe
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    @Path("image/{id}") 
+    @Path("image/{id}")
     public String insert(
             @FormDataParam("image") InputStream fileInputStream,
             @FormDataParam("image") FormDataContentDisposition fileMetaData,
             @PathParam("id") int id
-           ) {
-        
-       // Token token = CreatedToken.decodeToken(header);
-        
-        return this.gson.toJson(this.iProdutoServices.inserirImagem(id,fileInputStream, fileMetaData));
+    ) {
+
+        // Token token = CreatedToken.decodeToken(header);
+        return this.gson.toJson(this.iProdutoServices.inserirImagem(id, fileInputStream, fileMetaData));
     }
 }

@@ -5,7 +5,7 @@ import br.com.lojagames.Application.Model.ProdutoModel;
 import br.com.lojagames.Application.Services.ProdutoServices;
 import br.com.lojagames.Domain.Entity.ProdutoEntity;
 import br.com.lojagames.InfraStructure.Data.ProdutoRepository;
-import br.com.lojasgames.Domain.Interfaces.IProdutoRepository;
+import br.com.lojagames.Domain.Interfaces.IProdutoRepository;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 
 /**
