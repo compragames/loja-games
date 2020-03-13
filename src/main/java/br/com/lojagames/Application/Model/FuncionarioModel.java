@@ -15,6 +15,7 @@ import java.sql.Timestamp;
  */
 public class FuncionarioModel extends Model{
     
+    private FuncionarioEntity fe;
     
     private int idfuncionario;
     private String nome;
@@ -97,8 +98,7 @@ public class FuncionarioModel extends Model{
     
     @Override
     public Entity getEntity() {
-        FuncionarioEntity fe = new FuncionarioEntity();
-            
+        fe = new FuncionarioEntity();
         fe.setIdfuncionario(idfuncionario);
         fe.setNome(nome);
         fe.setEndereco(endereco);
