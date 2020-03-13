@@ -2,7 +2,6 @@ package br.com.lojagames.Application.Model;
 
 import br.com.lojagames.Domain.Entity.Entity;
 import br.com.lojagames.Domain.Entity.ProdutoEntity;
-import java.util.List;
 
 /**
  *
@@ -17,7 +16,7 @@ public class ProdutoModel extends Model {
     private String tipoProduto;
     private int qtdEstoque;
     private double valorUnitario;
-    private List imagens;
+    private String imagens;
 
     public ProdutoModel() {
     }
@@ -65,19 +64,27 @@ public class ProdutoModel extends Model {
 
      
     
-    public List getImagens() {
+    public String getImagens() {
         return this.imagens;
     }
-
+  
     @Override
     public Entity getEntity() {
         produtoEntity = new ProdutoEntity();
         produtoEntity.setNome(nome);
         produtoEntity.setTipoProduto(tipoProduto);
         produtoEntity.setValorUnitario(valorUnitario);
+        produtoEntity.setIdEmpresa(1);
+        produtoEntity.setQtdEstoque(qtdEstoque);
+        produtoEntity.setImagens(imagens);
+        
 
         return produtoEntity;
 
+    }
+
+    public void setImage(String upload) {
+       this.imagens = upload;
     }
 
   

@@ -21,15 +21,17 @@ public class ProdutoRepository extends IRepository implements IProdutoRepository
         produto.setDisponivel(true);
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO Produto "
-                + "(NOME, TIPOPRODUTO, QNTESTOQUE, VALORUNITARIO, IDEMPRESA)"
-                + "VALUES (?, ?, ?, ?, ?)");
+                + "(NOME, TIPOPRODUTO, QNTESTOQUE, VALORUNITARIO, IDEMPRESA,IMAGE)"
+                + "VALUES (?, ?, ?, ?, ?,?)");
         this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
         prepareStatement.setString(1, produto.getNome());
         prepareStatement.setString(2, produto.getTipoProduto());
         prepareStatement.setDouble(3, produto.getQtdEstoque());
         prepareStatement.setDouble(4, produto.getValorUnitario());
-        prepareStatement.setInt(5, 1);
+        prepareStatement.setInt(5, produto.getIdEmpresa());
+        prepareStatement.setString(6,produto.getImagens());
         this.prepareStatement.executeUpdate();
+        // generate key devolve a key que foi gerada no banco
         final ResultSet rs = this.prepareStatement.getGeneratedKeys();
         if (rs.next()) {
             produto.setIdProduto(rs.getInt(1));

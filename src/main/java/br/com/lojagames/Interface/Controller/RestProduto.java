@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.InputStream;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
@@ -48,11 +49,11 @@ public class RestProduto {
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Path("insert")
-    public String insertPost(String content,
+    public String insertPost(
             @HeaderParam("Authorization") String header,
             @FormDataParam("image") InputStream fileInputStream,
             @FormDataParam("image") FormDataContentDisposition fileMetaData,
-            @FormDataParam("products") String list
+            @FormDataParam("produto") String content
     ) {
         //Token token = CreatedToken.decodeToken(header);
         ProdutoModel produtos = (ProdutoModel) this.gson.fromJson(content, ProdutoModel.class);

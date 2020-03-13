@@ -7,6 +7,7 @@ import br.com.lojagames.Application.Model.ProdutoModel;
 import br.com.lojagames.Application.Model.ReturnModel;
 import br.com.lojagames.Domain.Entity.ProdutoEntity;
 import br.com.lojagames.Domain.Interfaces.IProdutoRepository;
+import br.com.lojagames.InfraStructure.ExternalServices.UploadImageAWS;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.ResultSet;
@@ -74,11 +75,15 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
         ReturnModel retorno = new ReturnModel();
 
         try {
+            UploadImageAWS updateImageAWS = new UploadImageAWS();
+
             //verifica o token 
             //verifica permissao
             getConnectOpen();
 //metodo de inserir produto no banco 
+  produto.setImage(updateImageAWS.upload(file));
             int id = iProdutoRepository.inserir((ProdutoEntity) produto.getEntity(), getConnect());
+          
             produto.setIdProduto(id);
             getConnectClose();
             retorno.setRetorno(true);

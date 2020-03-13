@@ -23,6 +23,23 @@ public class ProdutoEntity extends Entity{
     private double valorUnitario;
     private int idEmpresa;
     private boolean disponivel;
+    private String imagens;
+
+    public ProdutoModel getProdutoModel() {
+        return produtoModel;
+    }
+
+    public void setProdutoModel(ProdutoModel produtoModel) {
+        this.produtoModel = produtoModel;
+    }
+
+    public String getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(String imagens) {
+        this.imagens = imagens;
+    }
 
     public boolean getDisponivel() {
         return disponivel;
