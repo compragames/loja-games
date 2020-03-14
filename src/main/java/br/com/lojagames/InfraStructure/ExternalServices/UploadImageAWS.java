@@ -31,7 +31,7 @@ public class UploadImageAWS {
             try {
                 try {
                     try {
-                        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJZ7EATT63OEN2JIQ", "CmEdtMAH6jUfu047Yo5q241Anwx5MtvNs3d3SywY");
+                        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJC65HUYHFHOFNSWA", "kudG3phL4AUe1K0fDAo9CYFNP06NR9pohxkq8GVx");
                         AmazonS3 s3client = AmazonS3ClientBuilder.standard()
                                 .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
                                 .withRegion("us-east-1").build();
@@ -54,7 +54,7 @@ public class UploadImageAWS {
             try {
                 try {
                     try {
-                        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJZ7EATT63OEN2JIQ", "CmEdtMAH6jUfu047Yo5q241Anwx5MtvNs3d3SywY");
+                        BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJC65HUYHFHOFNSWA", "kudG3phL4AUe1K0fDAo9CYFNP06NR9pohxkq8GVx");
                         AmazonS3 s3client = AmazonS3ClientBuilder.standard()
                                 .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
                                 .withRegion("us-east-1").build();
