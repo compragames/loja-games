@@ -37,7 +37,7 @@ public class RestCliente {
     }
     
     @POST
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("insert")
     public String insert(@FormDataParam("cliente") String content) {
         ClienteModel cliente = (ClienteModel) this.gson.fromJson(content, ClienteModel.class);
