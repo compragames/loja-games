@@ -5,7 +5,9 @@
  */
 package br.com.lojagames.Application.IService;
 
+import br.com.lojagames.Application.DTO.Token;
 import br.com.lojagames.Application.Model.FuncionarioModel;
+import java.util.List;
 
 /**
  *
@@ -14,5 +16,16 @@ import br.com.lojagames.Application.Model.FuncionarioModel;
 public interface IFuncionarioServices <T> {
     
     public T cadastroFuncionario (FuncionarioModel funcionario, String token);
+    
+    public T deletarFuncionario(FuncionarioModel funcionario, Token token);
+
+    public List<T> getFuncionario(List<FuncionarioModel> funcionarios);
+    public List<T> listarFuncionario();
+
+    public T modificarFuncionario(FuncionarioModel funcionario, Token token);
+
+    public T updateFuncionario(FuncionarioModel funcionario, Token token);
+
+    
     
 }
