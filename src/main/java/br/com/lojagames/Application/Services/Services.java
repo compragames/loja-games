@@ -20,7 +20,7 @@ public abstract class Services {
 
     protected void getConnectOpen() throws SQLException {
         if (connection == null || connection.isClosed()) {
-            connection = ModelConnection.conectorProd();
+            connection = ModelConnection.conectorDev();
             //define se estamos apontando para o banco local ou de produção
         }
     }
