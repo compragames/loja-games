@@ -11,6 +11,7 @@ import br.com.lojagames.Application.Model.ClienteModel;
 /**
  *
  * @author gabriel.gisidorio
+ * @param <T>
  */
 public interface IClienteServices<T> {
     
