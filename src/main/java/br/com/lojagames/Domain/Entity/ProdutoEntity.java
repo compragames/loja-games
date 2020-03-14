@@ -23,7 +23,7 @@ public class ProdutoEntity extends Entity{
     private double valorUnitario;
     private int idEmpresa;
     private boolean disponivel;
-    private String imagens;
+    private int imagens;
 
     public ProdutoModel getProdutoModel() {
         return produtoModel;
@@ -33,11 +33,11 @@ public class ProdutoEntity extends Entity{
         this.produtoModel = produtoModel;
     }
 
-    public String getImagens() {
+    public int getImagens() {
         return imagens;
     }
 
-    public void setImagens(String imagens) {
+    public void setImagens(int imagens) {
         this.imagens = imagens;
     }
 
@@ -103,6 +103,12 @@ public class ProdutoEntity extends Entity{
     @Override
     public Model getModel() {
         produtoModel = new ProdutoModel();
+        produtoModel.setIdProduto(idProduto);
+        produtoModel.setImage(imagens);
+        produtoModel.setNome(nome);
+        produtoModel.setQtdEstoque(qtdEstoque);
+        produtoModel.setTipoProduto(tipoProduto);
+        produtoModel.setValorUnitario(valorUnitario);
        
         return produtoModel;
     

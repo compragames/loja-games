@@ -16,7 +16,7 @@ public class ProdutoModel extends Model {
     private String tipoProduto;
     private int qtdEstoque;
     private double valorUnitario;
-    private String imagens;
+    private int imagens;
 
     public ProdutoModel() {
     }
@@ -64,7 +64,7 @@ public class ProdutoModel extends Model {
 
      
     
-    public String getImagens() {
+    public int getImagens() {
         return this.imagens;
     }
   
@@ -83,7 +83,7 @@ public class ProdutoModel extends Model {
 
     }
 
-    public void setImage(String upload) {
+    public void setImage(int upload) {
        this.imagens = upload;
     }
 

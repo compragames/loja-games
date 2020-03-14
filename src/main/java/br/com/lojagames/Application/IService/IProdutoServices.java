@@ -16,8 +16,7 @@ public interface IProdutoServices<T> {
 
     public T deletarProduto(ProdutoModel produto, Token token);
 
-    public List<T> getProduto(List<ProdutoModel> produtos);
-     public List<T> listarProdutos();
+    public List<T> listarProdutos();
 
     public T modificarFoto(ProdutoModel produto, Token token, InputStream fileInputStream);
 

@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.InputStream;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
@@ -53,13 +52,15 @@ public class RestProduto {
             @HeaderParam("Authorization") String header,
             @FormDataParam("image") InputStream fileInputStream,
             @FormDataParam("image") FormDataContentDisposition fileMetaData,
+           @FormDataParam("image2") InputStream fileInputStream2,
+            @FormDataParam("image2") FormDataContentDisposition fileMetaData2,
             @FormDataParam("produto") String content
     ) {
         //Token token = CreatedToken.decodeToken(header);
         ProdutoModel produtos = (ProdutoModel) this.gson.fromJson(content, ProdutoModel.class);
          
         //bytesToImage(fileInputStream, fileMetaData);
-             File file = new UploadImageAWS().bytesToImage(fileInputStream, fileMetaData);
+        File file = new UploadImageAWS().bytesToImage(fileInputStream, fileMetaData);
 
         return this.gson.toJson(this.iProdutoServices.cadastroProduto(produtos, "",file));
     }
