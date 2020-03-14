@@ -2,7 +2,7 @@ package br.com.lojagames.Application.Model;
 
 import br.com.lojagames.Domain.Entity.ClienteEntity;
 import br.com.lojagames.Domain.Entity.Entity;
-import java.sql.Timestamp;
+
 
 /**
  *
@@ -16,7 +16,7 @@ public class ClienteModel extends Model {
     private String nome;
     private String cpf;
     private String cnpj;
-    private Timestamp dataNascimento;
+    private String dataNascimento;
     private String telefone;
     private String email;
     private String endereco;
@@ -57,11 +57,11 @@ public class ClienteModel extends Model {
         this.cnpj = cnpj;
     }
 
-    public Timestamp getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Timestamp dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

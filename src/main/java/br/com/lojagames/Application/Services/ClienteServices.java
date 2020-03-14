@@ -14,6 +14,7 @@ import br.com.lojagames.Domain.Entity.ClienteEntity;
 import br.com.lojasgames.Domain.Interfaces.IClienteRepository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -61,6 +62,7 @@ public class ClienteServices extends Services implements IClienteServices<Model>
         
         ReturnModel retorno = new ReturnModel();
         
+        
         try {
             getConnectOpen();            
             int id = iClienteRepository.inserir((ClienteEntity) cliente.getEntity(), getConnect());
@@ -71,6 +73,7 @@ public class ClienteServices extends Services implements IClienteServices<Model>
             retorno.setId(id);            
             return retorno;            
         } catch (SQLException ex) {
+            System.out.println(ex);
             getConnectClose();
             retorno.setRetorno(false);
             retorno.setTxtRetorno("Erro ao tentar cadastrar cliente");

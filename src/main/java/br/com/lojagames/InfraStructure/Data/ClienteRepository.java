@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 
 /**
  *
@@ -22,6 +23,8 @@ public class ClienteRepository extends IRepository implements IClienteRepository
     @Override
     public int inserir(ClienteEntity cliente, Connection conexao) throws SQLException {
         StringBuilder sql = new StringBuilder();
+        Timestamp ts = Timestamp.valueOf(cliente.getDataNascimento());
+        System.out.println(ts);
         sql.append("INSERT INTO CLIENTE "
                 + "(NOME, CPF, CNPJ, DATANASCIMENTO, TELEFONE, EMAIL, ENDERECO"
                 + "CEP, TIPO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -29,7 +32,7 @@ public class ClienteRepository extends IRepository implements IClienteRepository
         prepareStatement.setString(1, cliente.getNome());
         prepareStatement.setString(2, cliente.getCpf());
         prepareStatement.setString(3, cliente.getCnpj());
-        prepareStatement.setTimestamp(4, cliente.getDataNascimento());
+        prepareStatement.setTimestamp(4,ts);
         prepareStatement.setString(5, cliente.getTelefone());
         prepareStatement.setString(6, cliente.getEmail());
         prepareStatement.setString(7, cliente.getEndereco());
