@@ -34,6 +34,7 @@ public abstract class Services {
             if(connection != null || !connection.isClosed())
             connection.close();
         } catch (SQLException ex) {
+
         }
     }
 

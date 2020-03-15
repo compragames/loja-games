@@ -2,6 +2,7 @@ package br.com.lojagames.Domain.Interfaces;
 
 import br.com.lojagames.Domain.Entity.Entity;
 import br.com.lojagames.Domain.Entity.ProdutoEntity;
+import java.io.File;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,7 +17,8 @@ import java.util.List;
 public interface IProdutoRepository {
 
     public int inserir(ProdutoEntity produto, Connection conexao) throws SQLException;
-     public int inserirImagem(int id, Connection conexao) throws SQLException;
+     public int inserirImagem(int id,String file, Connection conexao) throws SQLException;
+        
 
     public ResultSet buscaEstoque(Connection conexao, ProdutoEntity productEntity) throws SQLException;
 

@@ -68,24 +68,19 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
     }
 
     @Override
-    public Model cadastroProduto(ProdutoModel produto, String token, File file) {
+    public Model cadastroProduto(ProdutoModel produto, String token) {
         ReturnModel retorno = new ReturnModel();
-
         try {
-            UploadImageAWS updateImageAWS = new UploadImageAWS();
-
             //verifica o token 
             //verifica permissao
             getConnectOpen();
-//metodo de inserir produto no banco 
-  //produto.setImage(updateImageAWS.upload(file));
             int id = iProdutoRepository.inserir((ProdutoEntity) produto.getEntity(), getConnect());
-          
-            produto.setIdProduto(id);
-            getConnectClose();
+                    
+
             retorno.setRetorno(true);
             retorno.setTxtRetorno("Produto cadastrado com sucesso");
             retorno.setId(id);
+            getConnectClose();
             return retorno;
 
         } catch (SQLException e) {
@@ -98,53 +93,63 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
 
     @Override
     public List<Model> listarProdutos() {
-            List<Model> models = new ArrayList();
-          
-         try {
-          
+        List<Model> models = new ArrayList();
+        try {
             getConnectOpen();
-   //rs =  iProdutoRepository.listaTodosProdutos(getConnect());
-              
-              iProdutoRepository.listaTodosProdutos(getConnect()).forEach(item -> {
+            //rs =  iProdutoRepository.listaTodosProdutos(getConnect());
+            iProdutoRepository.listaTodosProdutos(getConnect()).forEach(item -> {
                 models.add(((ProdutoEntity) item).getModel());
             });
-
-             getConnectClose();
+            getConnectClose();
             return models;
         } catch (SQLException e) {
             getConnectClose();
             return null;
-        }}
+        }
+    }
 
+    private String[] inserirImagemAWS(File file1, File file2, File file3) {
+        String[] imagem = new String[3];
+        
+        if (file1 != null) {
+            UploadImageAWS updateImageAWS = new UploadImageAWS();
+            imagem[0] = updateImageAWS.upload(file1);
+        }
+        if (file2 != null) {
+            UploadImageAWS updateImageAWS2 = new UploadImageAWS();
+            imagem[1] = updateImageAWS2.upload(file2);
+        }
+        if (file3 != null) {
+            UploadImageAWS updateImageAWS3 = new UploadImageAWS();
+            imagem[2] = updateImageAWS3.upload(file3);
+        }
+        return imagem;
+    }
 
     @Override
-    public Object inserirImagem(int id, InputStream fileInputStream, FormDataContentDisposition fileMetaData) {
-   String path = null;
-          ReturnModel retorno = new ReturnModel();
-          File img = new File(path);
-          
-
-        try {
+    public Model vincularImagemProduto(int produto, String nomeImagem, String token) {
+           ReturnModel retorno = new ReturnModel();
+     try {
             //verifica o token 
             //verifica permissao
             getConnectOpen();
-//metodo de inserir produto no banco 
-         System.out.println(fileInputStream);
-            getConnectClose();
+            int id = iProdutoRepository.inserirImagem(produto, nomeImagem, getConnect());
+                    
             retorno.setRetorno(true);
-            retorno.setTxtRetorno("Imagem cadastrada com sucesso");
+            retorno.setTxtRetorno("Imagem inserida com sucesso");
             retorno.setId(id);
+            getConnectClose();
             return retorno;
 
         } catch (SQLException e) {
+            System.out.println(e);
             getConnectClose();
             retorno.setRetorno(false);
-            retorno.setTxtRetorno("Erro ao tentar cadastrar produto");
+            retorno.setTxtRetorno("Erro ao tentar inserir imagem");
             return retorno;
-        }
-        
+        }    
+    
+    
     }
-
-  
 
 }

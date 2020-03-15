@@ -63,6 +63,7 @@ public class UploadImageAWS {
                         return keyName;
                     } catch (AmazonServiceException ase) {
                     } catch (AmazonClientException ace) {
+                        System.out.println(ace);
                     }
                 } catch (AmazonS3Exception e) {
                 }

@@ -41,7 +41,6 @@ public class ProdutoRepository extends IRepository implements IProdutoRepository
         return rs.getInt(1);
     }
 
-
     @Override
     public ResultSet buscaEstoque(Connection conexao, ProdutoEntity productEntity) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -68,15 +67,10 @@ public class ProdutoRepository extends IRepository implements IProdutoRepository
     }
 
     @Override
-    public int inserirImagem(int id, Connection conexao) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<ProdutoEntity> listaTodosProdutos(Connection connection) throws SQLException {
         StringBuilder query = new StringBuilder();
         List<ProdutoEntity> list = new ArrayList<>();
-     
+
         query.append("select * from produto");
         this.prepareStatement = connection.prepareStatement(query.toString());
 
@@ -95,5 +89,25 @@ public class ProdutoRepository extends IRepository implements IProdutoRepository
         }
         return list;
     }
+
+    @Override
+    public int inserirImagem(int id, String nome, Connection conexao) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append("INSERT INTO imagens (NOME, IDPRODUTO) VALUES (?, ?)");
+        this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+        prepareStatement.setString(1, nome);
+        prepareStatement.setInt(2, id);
+        this.prepareStatement.executeUpdate();
+        // generate key devolve a key que foi gerada no banco
+        final ResultSet rs = this.prepareStatement.getGeneratedKeys();
+if(rs.next()){
+
+           rs.getInt(1);
+
+        }
+        return rs.getInt(1);
+
+    }
+
 
 }

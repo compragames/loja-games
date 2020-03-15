@@ -48,34 +48,40 @@ public class RestProduto {
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Path("insert")
-    public String insertPost(
+    public String insertProduto(
             @HeaderParam("Authorization") String header,
             @FormDataParam("image") InputStream fileInputStream,
             @FormDataParam("image") FormDataContentDisposition fileMetaData,
-           @FormDataParam("image2") InputStream fileInputStream2,
+            @FormDataParam("image2") InputStream fileInputStream2,
             @FormDataParam("image2") FormDataContentDisposition fileMetaData2,
+            @FormDataParam("image3") InputStream fileInputStream3,
+            @FormDataParam("image3") FormDataContentDisposition fileMetaData3,
             @FormDataParam("produto") String content
     ) {
         //Token token = CreatedToken.decodeToken(header);
         ProdutoModel produtos = (ProdutoModel) this.gson.fromJson(content, ProdutoModel.class);
-         
-        //bytesToImage(fileInputStream, fileMetaData);
-        File file = new UploadImageAWS().bytesToImage(fileInputStream, fileMetaData);
 
-        return this.gson.toJson(this.iProdutoServices.cadastroProduto(produtos, "",file));
+        File file = new UploadImageAWS().bytesToImage(fileInputStream, fileMetaData);
+        File file2 = new UploadImageAWS().bytesToImage(fileInputStream2, fileMetaData2);
+        File file3 = new UploadImageAWS().bytesToImage(fileInputStream3, fileMetaData3);
+
+        return this.gson.toJson(this.iProdutoServices.cadastroProduto(produtos, ""));
     }
 
-    //@Safe
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    @Path("image/{id}")
-    public String insert(
+    @Path("imagem/{id}")
+    public String vincularImagemProduto(
+            //@HeaderParam("Authorization") String header,
+            @PathParam("id") int id,
             @FormDataParam("image") InputStream fileInputStream,
-            @FormDataParam("image") FormDataContentDisposition fileMetaData,
-            @PathParam("id") int id
+            @FormDataParam("image") FormDataContentDisposition fileMetaData
     ) {
+        //Token token = CreatedToken.decodeToken(header);
 
-        // Token token = CreatedToken.decodeToken(header);
-        return this.gson.toJson(this.iProdutoServices.inserirImagem(id, fileInputStream, fileMetaData));
+        String imagem = new UploadImageAWS().upload(fileInputStream, fileMetaData);
+
+        return this.gson.toJson(this.iProdutoServices.vincularImagemProduto(id, imagem, ""));
     }
+
 }
