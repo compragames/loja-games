@@ -75,12 +75,40 @@ public class FuncionarioServices extends Services implements IFuncionarioService
 
     @Override
     public Model modificarFuncionario(FuncionarioModel funcionario, Token token) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ReturnModel retorno = new ReturnModel();
+
+        try {
+            getConnectOpen();
+
+            return retorno;
+        } catch (SQLException ex) {
+            getConnectClose();
+            retorno.setRetorno(false);
+            retorno.setTxtRetorno("Erro ao tentar editar funcionario");
+            return retorno;
+        }
     }
 
     @Override
-    public Model updateFuncionario(FuncionarioModel funcionario, Token token) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Model updateFuncionario(FuncionarioModel funcionario, String token) {
+        ReturnModel retorno = new ReturnModel();
+
+        try {
+            getConnectOpen();
+            int id = iFuncionarioRepository.editarFuncionario((FuncionarioEntity) funcionario.getEntity(), getConnect());
+            funcionario.setIdfuncionario(id);
+            getConnectClose();
+            retorno.setRetorno(true);
+            retorno.setTxtRetorno("Funcionario editado com sucesso");
+            retorno.setId(id);
+            return retorno;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            getConnectClose();
+            retorno.setRetorno(false);
+            retorno.setTxtRetorno("Erro ao tentar editar funcionario");
+            return retorno;
+        }
     }
     
     @Override
