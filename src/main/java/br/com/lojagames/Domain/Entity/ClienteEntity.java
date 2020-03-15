@@ -21,7 +21,7 @@ public class ClienteEntity extends Entity {
     private String nome;
     private String cpf;
     private String cnpj;
-    private Timestamp dataNascimento;
+    private String dataNascimento;
     private String telefone;
     private String email;
     private String endereco;
@@ -63,11 +63,11 @@ public class ClienteEntity extends Entity {
         this.cnpj = cnpj;
     }
 
-    public Timestamp getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Timestamp dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

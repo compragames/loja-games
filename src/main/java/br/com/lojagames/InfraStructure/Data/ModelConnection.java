@@ -39,7 +39,7 @@ public class ModelConnection {
         //dev
         String url = "jdbc:mysql://" + SERVER + "/" + DATABASE + "?useTimezone=true&serverTimezone=UTC";
         String user = "root";
-        String password = "adminadmin";
+        String password = "root";
 
         try {
             Class.forName(DRIVER);

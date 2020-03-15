@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
@@ -23,23 +24,23 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
  */
 @Path("cliente")
 public class RestCliente {
-    
+
     private final IClienteServices iClienteServices;
-    
+
     @Context
     private UriInfo context;
     private final Gson gson;
-    
+
     @Inject
     public RestCliente(IClienteServices iClienteServices) {
         this.iClienteServices = iClienteServices;
         gson = new Gson();
     }
-    
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("insert")
-    public String insert(@FormDataParam("cliente") String content) {
+    public String insert(String content) {
         ClienteModel cliente = (ClienteModel) this.gson.fromJson(content, ClienteModel.class);
         return this.gson.toJson(this.iClienteServices.cadastrarCliente(cliente, ""));
     }
