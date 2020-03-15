@@ -7,6 +7,7 @@ package br.com.lojagames.Application.IService;
 
 import br.com.lojagames.Application.DTO.Token;
 import br.com.lojagames.Application.Model.ClienteModel;
+import java.util.List;
 
 /**
  *
@@ -19,7 +20,9 @@ public interface IClienteServices<T> {
     
     public T cadastrarCliente(ClienteModel cliente, String token);
     
-    public T listarClientes();
+    public List<T> listarClientes();
     
     public T editarCliente(ClienteModel cliente, Token token);
+    
+    public T editarCliente(ClienteModel cliente, String token);
 }
