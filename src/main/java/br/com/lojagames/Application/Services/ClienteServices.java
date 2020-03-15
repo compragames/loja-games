@@ -80,4 +80,6 @@ public class ClienteServices extends Services implements IClienteServices<Model>
             return retorno;
         }        
     }
+    
+
 }
