@@ -25,10 +25,10 @@ public class ClienteRepository extends IRepository implements IClienteRepository
         StringBuilder sql = new StringBuilder();
         Timestamp ts = Timestamp.valueOf(cliente.getDataNascimento());
         System.out.println(ts);
-        sql.append("INSERT INTO CLIENTE "
-                + "(NOME, CPF, CNPJ, DATANASCIMENTO, TELEFONE, EMAIL, ENDERECO"
-                + "CEP, TIPO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+        sql.append("INSERT INTO CLIENTE"
+                + "(NOME, CPF, CNPJ, DATANASCIMENTO, TELEFONE, EMAIL, ENDERECO,CEP,TIPO)"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+       this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
         prepareStatement.setString(1, cliente.getNome());
         prepareStatement.setString(2, cliente.getCpf());
         prepareStatement.setString(3, cliente.getCnpj());
