@@ -9,6 +9,7 @@ import br.com.lojagames.Domain.Entity.FuncionarioEntity;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -18,6 +19,9 @@ public interface IFuncionarioRepository {
     public int inserir (FuncionarioEntity funcionario, Connection conexao) throws SQLException;
     
     public ResultSet busca (Connection conexao) throws SQLException;
+    
+    public abstract List<FuncionarioEntity> listaFuncionarios(Connection connection) throws SQLException;
+
     
     public void deletar (FuncionarioEntity funcionario, Connection conexao)throws SQLException;
     

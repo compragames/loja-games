@@ -10,8 +10,10 @@ import br.com.lojagames.Application.IService.IFuncionarioServices;
 import br.com.lojagames.Application.Model.FuncionarioModel;
 import br.com.lojagames.Application.Model.Model;
 import br.com.lojagames.Application.Model.ReturnModel;
+import br.com.lojagames.Domain.Entity.FuncionarioEntity;
 import br.com.lojagames.Domain.Interfaces.IFuncionarioRepository;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,11 +32,10 @@ public class FuncionarioServices extends Services implements IFuncionarioService
     }
     
     @Override
-    public Model cadastroFuncionario(FuncionarioModel funcionario, String token) {
+    public Model cadastroFuncionario(FuncionarioModel funcionario, Token token) {
         ReturnModel retorno = new ReturnModel();
         try{
             getConnectOpen();
-            //inserir metodo no banco
             return retorno;
         } catch (SQLException e) {
             getConnectClose();
@@ -56,7 +57,20 @@ public class FuncionarioServices extends Services implements IFuncionarioService
 
     @Override
     public List<Model> listarFuncionario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Model> models = new ArrayList();
+        try {
+
+            getConnectOpen();
+            iFuncionarioRepository.listaFuncionarios(getConnect()).forEach(item -> {
+                models.add(((FuncionarioEntity) item).getModel());
+            });
+
+            getConnectClose();
+            return models;
+        } catch (SQLException e) {
+            getConnectClose();
+            return null;
+        }
     }
 
     @Override
@@ -67,6 +81,28 @@ public class FuncionarioServices extends Services implements IFuncionarioService
     @Override
     public Model updateFuncionario(FuncionarioModel funcionario, Token token) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public Model cadastroFuncionario(FuncionarioModel funcionario, String token) {
+        
+        ReturnModel retorno = new ReturnModel();
+        
+        try {
+            getConnectOpen();            
+            int id = iFuncionarioRepository.inserir((FuncionarioEntity) funcionario.getEntity(), getConnect());
+            funcionario.setIdfuncionario(id);
+            getConnectClose();
+            retorno.setRetorno(true);
+            retorno.setTxtRetorno("Funcionario cadastrado com sucesso");
+            retorno.setId(id);            
+            return retorno;            
+        } catch (SQLException ex) {
+            getConnectClose();
+            retorno.setRetorno(false);
+            retorno.setTxtRetorno("Erro ao tentar cadastrar funcionario");
+            return retorno;
+        }        
     }
     
     

@@ -16,6 +16,7 @@ import java.util.List;
 public interface IFuncionarioServices <T> {
     
     public T cadastroFuncionario (FuncionarioModel funcionario, String token);
+    public T cadastroFuncionario (FuncionarioModel funcionario, Token token);
     
     public T deletarFuncionario(FuncionarioModel funcionario, Token token);
 
