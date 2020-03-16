@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class FuncionarioRepository extends IRepository implements IFuncionarioRe
     public int inserir(FuncionarioEntity funcionario, Connection conexao) throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO FUNCIONARIO "
-                + "(NOME, ENDERECO, CEP, CPF, DATANASCIMENTO, DT_INCLUSAO, TIPO)"
+                + "(NOME, ENDERECO, CEP, CPF, DATANASCIMENTO, DTINCLUSAO, TIPO)"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?)");
         this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
         prepareStatement.setString(1, funcionario.getNome());
@@ -83,26 +82,6 @@ public class FuncionarioRepository extends IRepository implements IFuncionarioRe
     @Override
     public ResultSet buscaPorId(FuncionarioEntity funcionario, Connection conexao) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int editarFuncionario(FuncionarioEntity funcionario, Connection conexao) throws SQLException {
-        StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE FUNCIONARIO "
-                + "SET NOME = ?, ENDERECO = ?, CEP = ?, CPF = ?, DATANASCIMENTO = ?, "
-                + "DT_INCLUSAO = ?, TIPO = ?"
-                + "WHERE IDFUNCIONARIO = ?");
-        this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-        prepareStatement.setString(1, funcionario.getNome());
-        prepareStatement.setString(2, funcionario.getEndereco());
-        prepareStatement.setString(3, funcionario.getCep());
-        prepareStatement.setString(4, funcionario.getCpf());
-        prepareStatement.setTimestamp(5, funcionario.getDataNascimento());
-        prepareStatement.setTimestamp(6, funcionario.getDtInclusao());
-        prepareStatement.setString(7, funcionario.getTipo());
-        this.prepareStatement.executeUpdate();
-        
-        return funcionario.getIdfuncionario();
     }
     
 }

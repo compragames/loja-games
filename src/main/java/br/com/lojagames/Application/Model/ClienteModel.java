@@ -22,16 +22,7 @@ public class ClienteModel extends Model {
     private String endereco;
     private String cep;
     private String tipo;
-    private String status;
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    
     public ClienteModel() {}
 
     public int getIdCliente() {
@@ -117,7 +108,6 @@ public class ClienteModel extends Model {
     @Override
     public Entity getEntity() {
         clienteEntity = new ClienteEntity();
-        clienteEntity.setIdCliente(idCliente);
         clienteEntity.setNome(nome);
         clienteEntity.setCpf(cpf);
         clienteEntity.setCnpj(cnpj);
@@ -127,8 +117,8 @@ public class ClienteModel extends Model {
         clienteEntity.setEndereco(endereco);
         clienteEntity.setCep(cep);
         clienteEntity.setTipo(tipo);
-        clienteEntity.setStatus(status);
-        return clienteEntity;        
+        return clienteEntity;
+        
     }
 
 }

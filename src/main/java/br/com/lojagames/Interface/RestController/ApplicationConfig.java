@@ -18,7 +18,6 @@ public class ApplicationConfig extends ResourceConfig {
     private void addRest() {
         register(br.com.lojagames.Interface.Controller.RestProduto.class);
         register(br.com.lojagames.Interface.Controller.RestCliente.class);
-        register(br.com.lojagames.Interface.Controller.RestFuncionario.class);
         register(org.glassfish.jersey.server.wadl.internal.WadlResource.class);
         register(MultiPartFeature.class);
     }

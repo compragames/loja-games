@@ -25,7 +25,7 @@ public interface IFuncionarioServices <T> {
 
     public T modificarFuncionario(FuncionarioModel funcionario, Token token);
 
-    public T updateFuncionario(FuncionarioModel funcionario, String token);
+    public T updateFuncionario(FuncionarioModel funcionario, Token token);
 
     
     

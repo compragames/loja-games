@@ -20,9 +20,6 @@ public interface IFuncionarioRepository {
     
     public ResultSet busca (Connection conexao) throws SQLException;
     
-    public int editarFuncionario(FuncionarioEntity funcionario, Connection conexao) throws SQLException;;
-
-    
     public abstract List<FuncionarioEntity> listaFuncionarios(Connection connection) throws SQLException;
 
     

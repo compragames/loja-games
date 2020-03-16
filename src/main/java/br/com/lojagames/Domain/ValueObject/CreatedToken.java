@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.lojagames.Domain.ValueObject;
 
 import br.com.lojagames.Application.DTO.Token;
-import br.com.lojagames.Interface.RestController.CreatedTokenAbstract;
+import br.com.lojagames.Domain.Entity.UserEntity;
+import br.com.lojagames.Interface.RestController.TokenPreferencesAbstract;
 import com.google.gson.Gson;
 import com.mysql.cj.xdevapi.JsonParser;
 import java.io.UnsupportedEncodingException;
@@ -18,7 +14,7 @@ import javax.xml.bind.DatatypeConverter;
  *
  * @author Victor
  */
-public class CreatedToken  extends CreatedTokenAbstract{
+public class CreatedToken  extends TokenPreferencesAbstract{
 
     @Override
     public boolean codificarToken(String token) {
@@ -55,6 +51,17 @@ public class CreatedToken  extends CreatedTokenAbstract{
 //    return gson.fromJson(jsonObject, Token.class);
 return "";
 
+    }
+
+    @Override
+    public UserEntity tokemUser(String token) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+    @Override
+    public String token(com.google.gson.JsonObject payloadObject) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

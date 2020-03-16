@@ -10,7 +10,6 @@ import br.com.lojagames.Application.Model.ClienteModel;
 import com.google.gson.Gson;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -37,15 +36,6 @@ public class RestCliente {
         this.iClienteServices = iClienteServices;
         gson = new Gson();
     }
-    
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("list")
-    public String getList() {
-        ClienteModel cliente = new ClienteModel();
-        
-        return this.gson.toJson(this.iClienteServices.listarClientes());
-    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -53,13 +43,5 @@ public class RestCliente {
     public String insert(String content) {
         ClienteModel cliente = (ClienteModel) this.gson.fromJson(content, ClienteModel.class);
         return this.gson.toJson(this.iClienteServices.cadastrarCliente(cliente, ""));
-    }
-    
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("update")
-    public String update(String content) {
-        ClienteModel cliente = (ClienteModel) this.gson.fromJson(content, ClienteModel.class);
-        return this.gson.toJson(this.iClienteServices.editarCliente(cliente, ""));
     }
 }
