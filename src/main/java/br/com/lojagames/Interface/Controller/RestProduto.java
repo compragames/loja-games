@@ -46,24 +46,14 @@ public class RestProduto {
 
     //  @Safe
     @POST
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("insert")
     public String insertProduto(
             @HeaderParam("Authorization") String header,
-            @FormDataParam("image") InputStream fileInputStream,
-            @FormDataParam("image") FormDataContentDisposition fileMetaData,
-            @FormDataParam("image2") InputStream fileInputStream2,
-            @FormDataParam("image2") FormDataContentDisposition fileMetaData2,
-            @FormDataParam("image3") InputStream fileInputStream3,
-            @FormDataParam("image3") FormDataContentDisposition fileMetaData3,
-            @FormDataParam("produto") String content
+            String content
     ) {
         //Token token = CreatedToken.decodeToken(header);
         ProdutoModel produtos = (ProdutoModel) this.gson.fromJson(content, ProdutoModel.class);
-
-        File file = new UploadImageAWS().bytesToImage(fileInputStream, fileMetaData);
-        File file2 = new UploadImageAWS().bytesToImage(fileInputStream2, fileMetaData2);
-        File file3 = new UploadImageAWS().bytesToImage(fileInputStream3, fileMetaData3);
 
         return this.gson.toJson(this.iProdutoServices.cadastroProduto(produtos, ""));
     }

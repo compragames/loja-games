@@ -9,6 +9,7 @@ import br.com.lojagames.Domain.Entity.ClienteEntity;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -18,7 +19,9 @@ public interface IClienteRepository {
     
     public int inserir(ClienteEntity cliente, Connection conexao) throws SQLException;
     
-    public ResultSet buscar(Connection conexao) throws SQLException;
+    public List<ClienteEntity> listarClientes(Connection conexao) throws SQLException;
+    
+    public int editarCliente(ClienteEntity cliente, Connection conexao) throws SQLException;;
     
     public ResultSet buscarPorId(ClienteEntity cliente, Connection conexao) throws SQLException;
     
