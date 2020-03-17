@@ -68,8 +68,9 @@ public class RestProduto {
             @FormDataParam("image") FormDataContentDisposition fileMetaData
     ) {
         //Token token = CreatedToken.decodeToken(header);
+        File file = new UploadImageAWS().bytesToImage(fileInputStream, fileMetaData);
 
-        String imagem = new UploadImageAWS().upload(fileInputStream, fileMetaData);
+        String imagem = new UploadImageAWS().upload(file);
 
         return this.gson.toJson(this.iProdutoServices.vincularImagemProduto(id, imagem, ""));
     }
