@@ -11,7 +11,6 @@ import java.security.GeneralSecurityException;
  * @author Victor
  */
 public abstract class TokenPreferencesAbstract extends Token {
-    
 
     public TokenPreferencesAbstract() {
         super();
@@ -21,11 +20,13 @@ public abstract class TokenPreferencesAbstract extends Token {
 
     public abstract UserEntity tokemUser(String token);
 
-    public abstract String header();
+    public abstract String payload(JsonObject object);
 
     public abstract String computeSignature(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException;
+
+    public abstract String header();
 
     public abstract String token(JsonObject payloadObject);
 
     public abstract boolean validaToken(String header);
-    }
+}
