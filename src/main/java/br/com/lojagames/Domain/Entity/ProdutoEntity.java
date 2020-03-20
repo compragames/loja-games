@@ -7,6 +7,7 @@ package br.com.lojagames.Domain.Entity;
 
 import br.com.lojagames.Application.Model.Model;
 import br.com.lojagames.Application.Model.ProdutoModel;
+import java.util.List;
 
 /**
  *
@@ -16,37 +17,61 @@ public class ProdutoEntity extends Entity{
     
     private ProdutoModel produtoModel;
     
+    
+    /**
+     * IDPRODUTO INT AUTO_INCREMENT NOT NULL,
+	NOME VARCHAR(50) NOT NULL,
+	PLATAFORMA VARCHAR(20) NOT NULL,
+	QTDESTOQUE DOUBLE NOT NULL DEFAULT 0,
+	VALORUNITARIO DOUBLE NOT NULL,
+    DESCRICAO varchar(1000),
+	IDEMPRESA INT NOT NULL,
+	DATAINCLUSAO TIMESTAMP,
+    */
+    
     private int idProduto;
     private String nome;
-    private String tipoProduto;
+    private String plataforma;
     private int qtdEstoque;
     private double valorUnitario;
+    private String descricao;
     private int idEmpresa;
-    private boolean disponivel;
-    private int imagens;
+    private String dataInclusao;
+    private List<ImagemEntity>imagens;
+   // private boolean disponivel;
+
+    public List<ImagemEntity> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(List<ImagemEntity> imagens) {
+        this.imagens = imagens;
+    }
+
+   
 
     public ProdutoModel getProdutoModel() {
         return produtoModel;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getDataInclusao() {
+        return dataInclusao;
+    }
+
+    public void setDataInclusao(String dataInclusao) {
+        this.dataInclusao = dataInclusao;
+    }
+
     public void setProdutoModel(ProdutoModel produtoModel) {
         this.produtoModel = produtoModel;
-    }
-
-    public int getImagens() {
-        return imagens;
-    }
-
-    public void setImagens(int imagens) {
-        this.imagens = imagens;
-    }
-
-    public boolean getDisponivel() {
-        return disponivel;
-    }
-
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
     }
 
     public ProdutoEntity() {
@@ -68,12 +93,12 @@ public class ProdutoEntity extends Entity{
         this.nome = nome;
     }
 
-    public String getTipoProduto() {
-        return tipoProduto;
+    public String getPlataforma() {
+        return plataforma;
     }
 
-    public void setTipoProduto(String tipoProduto) {
-        this.tipoProduto = tipoProduto;
+    public void setPlataforma(String plataforma) {
+        this.plataforma = plataforma;
     }
 
     public int getQtdEstoque() {
@@ -104,11 +129,12 @@ public class ProdutoEntity extends Entity{
     public Model getModel() {
         produtoModel = new ProdutoModel();
         produtoModel.setIdProduto(idProduto);
-        produtoModel.setImage(imagens);
-        produtoModel.setNome(nome);
-        produtoModel.setQtdEstoque(qtdEstoque);
-        produtoModel.setTipoProduto(tipoProduto);
-        produtoModel.setValorUnitario(valorUnitario);
+       produtoModel.setTitle(nome);
+       produtoModel.setDescription(descricao);
+       produtoModel.setIdProduto(idProduto);
+       produtoModel.setPrice(valorUnitario);
+       produtoModel.setPlatform(plataforma);
+        
        
         return produtoModel;
     

@@ -7,7 +7,7 @@ import br.com.lojagames.Domain.Entity.UserEntity;
  *
  * @author Victor
  */
-public class UserModel extends Model {
+public class UsuarioModel extends Model {
 
     private int id;
     private String nome;

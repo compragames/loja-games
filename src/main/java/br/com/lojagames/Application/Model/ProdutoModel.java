@@ -12,11 +12,12 @@ public class ProdutoModel extends Model {
     private ProdutoEntity produtoEntity;
 
     private int idProduto;
-    private String nome;
-    private String tipoProduto;
+    private String title;
+    private String description;
+    private String platform;
     private int qtdEstoque;
-    private double valorUnitario;
-    private int imagens;
+    private double price;
+    private String[] imagens;
 
     public ProdutoModel() {
     }
@@ -24,26 +25,9 @@ public class ProdutoModel extends Model {
     public int getIdProduto() {
         return idProduto;
     }
-      public void setIdProduto(int id) {
-          this.idProduto = id;
-          }
 
-
-  
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getTipoProduto() {
-        return tipoProduto;
-    }
-
-    public void setTipoProduto(String tipoProduto) {
-        this.tipoProduto = tipoProduto;
+    public void setIdProduto(int id) {
+        this.idProduto = id;
     }
 
     public int getQtdEstoque() {
@@ -54,40 +38,65 @@ public class ProdutoModel extends Model {
         this.qtdEstoque = qtdEstoque;
     }
 
-    public double getValorUnitario() {
-        return valorUnitario;
+    public ProdutoEntity getProdutoEntity() {
+        return produtoEntity;
     }
 
-    public void setValorUnitario(double valorUnitario) {
-        this.valorUnitario = valorUnitario;
+    public void setProdutoEntity(ProdutoEntity produtoEntity) {
+        this.produtoEntity = produtoEntity;
     }
 
-     
-    
-    public int getImagens() {
-        return this.imagens;
+    public String getTitle() {
+        return title;
     }
-  
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String[] getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(String[] imagens) {
+        this.imagens = imagens;
+    }
+
     @Override
     public Entity getEntity() {
         produtoEntity = new ProdutoEntity();
-        produtoEntity.setNome(nome);
-        produtoEntity.setTipoProduto(tipoProduto);
-        produtoEntity.setValorUnitario(valorUnitario);
+        produtoEntity.setNome(title);
+        produtoEntity.setPlataforma(platform);
+        produtoEntity.setValorUnitario(price);
         produtoEntity.setIdEmpresa(1);
         produtoEntity.setQtdEstoque(qtdEstoque);
-        produtoEntity.setImagens(imagens);
-        
 
         return produtoEntity;
 
     }
-
-    public void setImage(int upload) {
-       this.imagens = upload;
-    }
-
-  
- 
 
 }

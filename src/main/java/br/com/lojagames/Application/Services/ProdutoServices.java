@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
@@ -98,8 +100,16 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
             getConnectOpen();
             //rs =  iProdutoRepository.listaTodosProdutos(getConnect());
             iProdutoRepository.listaTodosProdutos(getConnect()).forEach(item -> {
-                models.add(((ProdutoEntity) item).getModel());
+                try {
+                    item.setImagens(iProdutoRepository.listaImagem(item.getIdProduto(),  getConnect()));
+                } catch (SQLException ex) {
+                    System.out.println("O erro ao listar imagem"+ex);
+                }
+                models.add(((ProdutoEntity)item).getModel());
+                
             });
+            
+        
             getConnectClose();
             return models;
         } catch (SQLException e) {

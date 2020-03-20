@@ -6,7 +6,7 @@
 package br.com.lojagames.Domain.Entity;
 
 import br.com.lojagames.Application.Model.Model;
-import br.com.lojagames.Application.Model.UserModel;
+import br.com.lojagames.Application.Model.UsuarioModel;
 
 /**
  *
@@ -14,9 +14,9 @@ import br.com.lojagames.Application.Model.UserModel;
  */
 public class UserEntity extends Entity {
 
-    private UserModel userModel;
+    private UsuarioModel userModel;
 
-    // private UserModel userModel;
+    // private UsuarioModel userModel;
     private int id;
     private String nome;
     private String login;
@@ -30,7 +30,7 @@ public class UserEntity extends Entity {
     public UserEntity() {
     }
 
-    public UserEntity(UserModel userModel) {
+    public UserEntity(UsuarioModel userModel) {
         this.id = userModel.getId();
         this.nome = userModel.getNome();
         this.login = userModel.getLogin();
@@ -113,17 +113,17 @@ public class UserEntity extends Entity {
         this.token = token;
     }
 
-    public UserModel getUserModel() {
+    public UsuarioModel getUserModel() {
         return userModel;
     }
 
-    public void setUserModel(UserModel userModel) {
+    public void setUserModel(UsuarioModel userModel) {
         this.userModel = userModel;
     }
 
     @Override
     public Model getModel() {
-        userModel = new UserModel();
+        userModel = new UsuarioModel();
         userModel.setConfereSenha(confereSenha);
         userModel.setDataCri(dataCri);
         userModel.setEmailAlternativo(emailAlternativo);

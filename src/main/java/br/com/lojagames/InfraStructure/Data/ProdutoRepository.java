@@ -4,6 +4,7 @@ package br.com.lojagames.InfraStructure.Data;
  *
  * @author Victor
  */
+import br.com.lojagames.Domain.Entity.ImagemEntity;
 import br.com.lojagames.Domain.Entity.ProdutoEntity;
 import br.com.lojagames.Domain.Interfaces.IRepository;
 import java.io.InputStream;
@@ -20,18 +21,21 @@ public class ProdutoRepository extends IRepository implements IProdutoRepository
 
     @Override
     public int inserir(ProdutoEntity produto, Connection conexao) throws SQLException {
-        produto.setDisponivel(true);
+        //produto.setDisponivel(true);
+        //editar query
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO Produto "
-                + "(NOME, TIPOPRODUTO, QNTESTOQUE, VALORUNITARIO, IDEMPRESA,IMAGENS)"
+                + "(NOME, TIPOPRODUTO, QNTESTOQUE, VALORUNITARIO, IDEMPRESA)"
                 + "VALUES (?, ?, ?, ?, ?,?)");
         this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
         prepareStatement.setString(1, produto.getNome());
-        prepareStatement.setString(2, produto.getTipoProduto());
+        prepareStatement.setString(2, produto.getPlataforma());
         prepareStatement.setDouble(3, produto.getQtdEstoque());
         prepareStatement.setDouble(4, produto.getValorUnitario());
         prepareStatement.setInt(5, produto.getIdEmpresa());
-        prepareStatement.setInt(6, produto.getImagens());
+        prepareStatement.setString(6,produto.getDescricao());
+        prepareStatement.setString(7, produto.getDataInclusao());
+     
         this.prepareStatement.executeUpdate();
         // generate key devolve a key que foi gerada no banco
         final ResultSet rs = this.prepareStatement.getGeneratedKeys();
@@ -79,12 +83,13 @@ public class ProdutoRepository extends IRepository implements IProdutoRepository
             ProdutoEntity produtoEt = new ProdutoEntity();
             produtoEt.setIdProduto(rs.getInt(1));
             produtoEt.setNome(rs.getString(2));
-            produtoEt.setDisponivel(true);
-            produtoEt.setTipoProduto(rs.getString(3));
+            produtoEt.setPlataforma(rs.getString(3));
             produtoEt.setQtdEstoque(rs.getInt(4));
             produtoEt.setValorUnitario(rs.getDouble(5));
-            produtoEt.setIdEmpresa(rs.getInt(6));
-            produtoEt.setImagens(rs.getInt(7));
+            produtoEt.setDescricao(rs.getString(6));
+            produtoEt.setIdEmpresa(rs.getInt(7));
+            produtoEt.setDataInclusao(rs.getString(8));
+
             list.add(produtoEt);
         }
         return list;
@@ -107,6 +112,30 @@ if(rs.next()){
         }
         return rs.getInt(1);
 
+    }
+
+    @Override
+    public List<ImagemEntity> listaImagem(int idProduto ,Connection connection) throws SQLException {
+        
+    StringBuilder query = new StringBuilder();
+        List<ImagemEntity> list = new ArrayList<>();
+
+        query.append("select * from imagem where idProduto = ?");
+        this.prepareStatement = connection.prepareStatement(query.toString());
+         prepareStatement.setInt(1, idProduto);
+
+        ResultSet rs = prepareStatement.executeQuery();
+        while (rs.next()) {
+            ImagemEntity imagem = new ImagemEntity();
+            imagem.setIdImagem(rs.getInt(1));
+            imagem.setIdProduto(rs.getInt(2));
+            imagem.setImgUso(rs.getBoolean(3));
+            imagem.setUrl(rs.getString(4));
+       
+
+            list.add(imagem);
+        }
+        return list;
     }
 
 

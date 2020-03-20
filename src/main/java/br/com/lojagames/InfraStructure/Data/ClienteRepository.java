@@ -42,7 +42,7 @@ public class ClienteRepository extends IRepository implements IClienteRepository
         prepareStatement.setString(7, cliente.getEndereco());
         prepareStatement.setString(8, cliente.getCep());
         prepareStatement.setString(9, cliente.getTipo());
-        prepareStatement.setString(10, cliente.getStatus());
+        prepareStatement.setString(10, cliente.getDataInclusao());
         this.prepareStatement.executeUpdate();
         
         final ResultSet rs = this.prepareStatement.getGeneratedKeys();
@@ -80,7 +80,7 @@ public class ClienteRepository extends IRepository implements IClienteRepository
             clienteEntity.setEndereco(rs.getString(8));
             clienteEntity.setCep(rs.getString(9));
             clienteEntity.setTipo(rs.getString(10));
-            clienteEntity.setStatus(rs.getString(11));
+            clienteEntity.setDataInclusao(rs.getTimestamp(11).toString());
             listaClientes.add(clienteEntity);
         }
         
@@ -116,7 +116,7 @@ public class ClienteRepository extends IRepository implements IClienteRepository
         prepareStatement.setString(7, cliente.getEndereco());
         prepareStatement.setString(8, cliente.getCep());
         prepareStatement.setString(9, cliente.getTipo());
-        prepareStatement.setString(10, cliente.getStatus());
+        prepareStatement.setString(10, cliente.getDataInclusao());// converter para timestamp
         prepareStatement.setInt(11, cliente.getIdCliente());
         this.prepareStatement.executeUpdate();
         

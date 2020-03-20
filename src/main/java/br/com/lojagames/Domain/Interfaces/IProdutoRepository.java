@@ -1,6 +1,7 @@
 package br.com.lojagames.Domain.Interfaces;
 
 import br.com.lojagames.Domain.Entity.Entity;
+import br.com.lojagames.Domain.Entity.ImagemEntity;
 import br.com.lojagames.Domain.Entity.ProdutoEntity;
 import java.io.File;
 import java.io.InputStream;
@@ -25,6 +26,7 @@ public interface IProdutoRepository {
     public void deletar(ProdutoEntity produto, Connection conexao) throws SQLException;
         
     public abstract List<ProdutoEntity> listaTodosProdutos(Connection connection) throws SQLException;
+      public abstract List<ImagemEntity> listaImagem(int idProduto,Connection connection) throws SQLException;
 
     public void modificandoFoto(ProdutoEntity produto, InputStream fileInputStream, Connection conexao) throws SQLException;
 

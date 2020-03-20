@@ -22,14 +22,15 @@ public class ClienteModel extends Model {
     private String endereco;
     private String cep;
     private String tipo;
-    private String status;
+    private String datainclusao;
+   
 
-    public String getStatus() {
-        return status;
+    public String getDataInclusao() {
+        return datainclusao;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDataInclusao(String status) {
+        this.datainclusao = status;
     }
     
     public ClienteModel() {}
@@ -127,7 +128,7 @@ public class ClienteModel extends Model {
         clienteEntity.setEndereco(endereco);
         clienteEntity.setCep(cep);
         clienteEntity.setTipo(tipo);
-        clienteEntity.setStatus(status);
+        clienteEntity.setDataInclusao(datainclusao);
         return clienteEntity;        
     }
 
