@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import br.com.lojagames.Domain.Interfaces.IProdutoRepository;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,18 +24,20 @@ public class ProdutoRepository extends IRepository implements IProdutoRepository
     public int inserir(ProdutoEntity produto, Connection conexao) throws SQLException {
         //produto.setDisponivel(true);
         //editar query
+        Timestamp dataDeHoje = new Timestamp(System.currentTimeMillis());
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO Produto "
-                + "(NOME, TIPOPRODUTO, QNTESTOQUE, VALORUNITARIO, IDEMPRESA)"
-                + "VALUES (?, ?, ?, ?, ?,?)");
+                + "(NOME, PLATAFORMA, QTDESTOQUE, VALORUNITARIO,DESCRICAO, IDEMPRESA,DATAINCLUSAO)"
+                + "VALUES (?, ?, ?, ?, ?,?,?)");
         this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
         prepareStatement.setString(1, produto.getNome());
         prepareStatement.setString(2, produto.getPlataforma());
         prepareStatement.setDouble(3, produto.getQtdEstoque());
         prepareStatement.setDouble(4, produto.getValorUnitario());
-        prepareStatement.setInt(5, produto.getIdEmpresa());
-        prepareStatement.setString(6,produto.getDescricao());
-        prepareStatement.setString(7, produto.getDataInclusao());
+           prepareStatement.setString(5,produto.getDescricao());
+        prepareStatement.setInt(6, produto.getIdEmpresa());
+     
+        prepareStatement.setTimestamp(7, dataDeHoje);
      
         this.prepareStatement.executeUpdate();
         // generate key devolve a key que foi gerada no banco
@@ -119,6 +122,7 @@ if(rs.next()){
         
     StringBuilder query = new StringBuilder();
         List<ImagemEntity> list = new ArrayList<>();
+        
 
         query.append("select * from imagem where idProduto = ?");
         this.prepareStatement = connection.prepareStatement(query.toString());

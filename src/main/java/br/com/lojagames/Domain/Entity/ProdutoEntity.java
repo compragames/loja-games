@@ -118,7 +118,7 @@ public class ProdutoEntity extends Entity{
     }
 
     public int getIdEmpresa() {
-        return idEmpresa;
+        return 1;
     }
 
     public void setIdEmpresa(int idEmpresa) {
