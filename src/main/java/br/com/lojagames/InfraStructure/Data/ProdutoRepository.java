@@ -101,10 +101,11 @@ public class ProdutoRepository extends IRepository implements IProdutoRepository
     @Override
     public int inserirImagem(int id, String nome, Connection conexao) throws SQLException {
         StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO imagens (NOME, IDPRODUTO) VALUES (?, ?)");
+        sql.append("INSERT INTO imagem (IDPRODUTO,URL,IMGUSO) VALUES (?,?,?)");
         this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-        prepareStatement.setString(1, nome);
-        prepareStatement.setInt(2, id);
+        prepareStatement.setInt(1, id);
+        prepareStatement.setString(2, nome);
+        prepareStatement.setBoolean(3, true);
         this.prepareStatement.executeUpdate();
         // generate key devolve a key que foi gerada no banco
         final ResultSet rs = this.prepareStatement.getGeneratedKeys();
@@ -133,8 +134,9 @@ if(rs.next()){
             ImagemEntity imagem = new ImagemEntity();
             imagem.setIdImagem(rs.getInt(1));
             imagem.setIdProduto(rs.getInt(2));
-            imagem.setImgUso(rs.getBoolean(3));
-            imagem.setUrl(rs.getString(4));
+              imagem.setUrl(rs.getString(3));
+            imagem.setImgUso(rs.getBoolean(4));
+          
        
 
             list.add(imagem);

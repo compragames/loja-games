@@ -102,6 +102,7 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
             iProdutoRepository.listaTodosProdutos(getConnect()).forEach(item -> {
                 try {
                     item.setImagens(iProdutoRepository.listaImagem(item.getIdProduto(),  getConnect()));
+                    System.out.println(item);
                 } catch (SQLException ex) {
                     System.out.println("O erro ao listar imagem"+ex);
                 }
@@ -139,6 +140,7 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
     @Override
     public Model vincularImagemProduto(int produto, String nomeImagem, String token) {
            ReturnModel retorno = new ReturnModel();
+           nomeImagem = "https://arquivos-compragames.s3.amazonaws.com/public/" + nomeImagem;
      try {
             //verifica o token 
             //verifica permissao

@@ -134,6 +134,7 @@ public class ProdutoEntity extends Entity{
        produtoModel.setIdProduto(idProduto);
        produtoModel.setPrice(valorUnitario);
        produtoModel.setPlatform(plataforma);
+       produtoModel.getImagens(imagens);
         
        
         return produtoModel;

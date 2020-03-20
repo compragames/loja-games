@@ -1,7 +1,9 @@
 package br.com.lojagames.Application.Model;
 
 import br.com.lojagames.Domain.Entity.Entity;
+import br.com.lojagames.Domain.Entity.ImagemEntity;
 import br.com.lojagames.Domain.Entity.ProdutoEntity;
+import java.util.List;
 
 /**
  *
@@ -17,7 +19,7 @@ public class ProdutoModel extends Model {
     private String platform;
     private int qtdEstoque;
     private double price;
-    private String[] imagens;
+    private List<ImagemEntity>imagens;
 
     public ProdutoModel() {
     }
@@ -78,14 +80,7 @@ public class ProdutoModel extends Model {
         this.price = price;
     }
 
-    public String[] getImagens() {
-        return imagens;
-    }
-
-    public void setImagens(String[] imagens) {
-        this.imagens = imagens;
-    }
-
+  
     @Override
     public Entity getEntity() {
         produtoEntity = new ProdutoEntity();
@@ -97,6 +92,10 @@ public class ProdutoModel extends Model {
 
         return produtoEntity;
 
+    }
+
+    public void getImagens(List<ImagemEntity> imagens) {
+    this.imagens = imagens;   
     }
 
 }
