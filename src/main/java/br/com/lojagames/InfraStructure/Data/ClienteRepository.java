@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.lojagames.InfraStructure.Data;
 
 import br.com.lojagames.Domain.Entity.ClienteEntity;
@@ -29,9 +24,9 @@ public class ClienteRepository extends IRepository implements IClienteRepository
         StringBuilder sql = new StringBuilder();        
         Timestamp ts = Timestamp.valueOf(cliente.getDataNascimento());
         System.out.println(ts);
-        sql.append("INSERT INTO CLIENTE"
-                + "(NOME, CPF, CNPJ, DATANASCIMENTO, TELEFONE, EMAIL, ENDERECO,CEP,TIPO, STATUS)"
-                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        sql.append("INSERT INTO CLIENTE "
+                + "(NOME, CPF, CNPJ, DATANASCIMENTO, TELEFONE, EMAIL, ENDERECO, CEP, TIPO)"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
        this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
         prepareStatement.setString(1, cliente.getNome());
         prepareStatement.setString(2, cliente.getCpf());
@@ -42,6 +37,7 @@ public class ClienteRepository extends IRepository implements IClienteRepository
         prepareStatement.setString(7, cliente.getEndereco());
         prepareStatement.setString(8, cliente.getCep());
         prepareStatement.setString(9, cliente.getTipo());
+
         prepareStatement.setString(10, cliente.getDataInclusao());
         this.prepareStatement.executeUpdate();
         
@@ -74,12 +70,13 @@ public class ClienteRepository extends IRepository implements IClienteRepository
             clienteEntity.setNome(rs.getString(2));
             clienteEntity.setCpf(rs.getString(3));
             clienteEntity.setCnpj(rs.getString(4));
-            clienteEntity. setDataNascimento(formattedDate);
+            clienteEntity.setDataNascimento(formattedDate);
             clienteEntity.setTelefone(rs.getString(6));
             clienteEntity.setEmail(rs.getString(7));
             clienteEntity.setEndereco(rs.getString(8));
             clienteEntity.setCep(rs.getString(9));
             clienteEntity.setTipo(rs.getString(10));
+
             clienteEntity.setDataInclusao(rs.getTimestamp(11).toString());
             listaClientes.add(clienteEntity);
         }
@@ -104,7 +101,7 @@ public class ClienteRepository extends IRepository implements IClienteRepository
         System.out.println(ts);
         sql.append("UPDATE CLIENTE "
                 + "SET NOME = ?, CPF = ?, CNPJ = ?, DATANASCIMENTO = ?, "
-                + "TELEFONE = ?, EMAIL = ?, ENDERECO = ?, CEP = ?, TIPO = ?, STATUS = ? "
+                + "TELEFONE = ?, EMAIL = ?, ENDERECO = ?, CEP = ?, TIPO = ?"
                 + "WHERE IDCLIENTE = ?");
        this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
         prepareStatement.setString(1, cliente.getNome());
@@ -116,8 +113,10 @@ public class ClienteRepository extends IRepository implements IClienteRepository
         prepareStatement.setString(7, cliente.getEndereco());
         prepareStatement.setString(8, cliente.getCep());
         prepareStatement.setString(9, cliente.getTipo());
+
         prepareStatement.setString(10, cliente.getDataInclusao());// converter para timestamp
         prepareStatement.setInt(11, cliente.getIdCliente());
+        prepareStatement.setInt(10, cliente.getIdCliente());
         this.prepareStatement.executeUpdate();
         
         return cliente.getIdCliente();

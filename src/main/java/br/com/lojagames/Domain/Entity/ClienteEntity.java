@@ -27,7 +27,10 @@ public class ClienteEntity extends Entity {
     private String endereco;
     private String cep;
     private String tipo;
+
     private String datainclusao;
+
+
 
     public String getDataInclusao() {
         return datainclusao;
@@ -36,6 +39,7 @@ public class ClienteEntity extends Entity {
     public void setDataInclusao(String status) {
         this.datainclusao = status;
     }
+
 
     public ClienteEntity() {
     }
@@ -133,7 +137,9 @@ public class ClienteEntity extends Entity {
         clienteModel.setEndereco(endereco);
         clienteModel.setCep(cep);
         clienteModel.setTipo(tipo);
+
         clienteModel.setDataInclusao(datainclusao);
+
         return clienteModel;
     }
     

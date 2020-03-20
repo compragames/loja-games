@@ -32,6 +32,7 @@ public class ClienteModel extends Model {
     public void setDataInclusao(String status) {
         this.datainclusao = status;
     }
+
     
     public ClienteModel() {}
 
@@ -129,6 +130,7 @@ public class ClienteModel extends Model {
         clienteEntity.setCep(cep);
         clienteEntity.setTipo(tipo);
         clienteEntity.setDataInclusao(datainclusao);
+
         return clienteEntity;        
     }
 
