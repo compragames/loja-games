@@ -38,7 +38,16 @@ public class ProdutoEntity extends Entity{
     private int idEmpresa;
     private String dataInclusao;
     private List<ImagemEntity>imagens;
+    private List<FaqEntity>faq;
    // private boolean disponivel;
+
+    public List<FaqEntity> getFaq() {
+        return faq;
+    }
+
+    public void setFaq(List<FaqEntity> faq) {
+        this.faq = faq;
+    }
 
     public List<ImagemEntity> getImagens() {
         return imagens;
@@ -135,6 +144,7 @@ public class ProdutoEntity extends Entity{
        produtoModel.setPrice(valorUnitario);
        produtoModel.setPlatform(plataforma);
        produtoModel.getImagens(imagens);
+       produtoModel.getFaq(faq);
         
        
         return produtoModel;

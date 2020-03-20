@@ -4,6 +4,7 @@ package br.com.lojagames.InfraStructure.Data;
  *
  * @author Victor
  */
+import br.com.lojagames.Domain.Entity.FaqEntity;
 import br.com.lojagames.Domain.Entity.ImagemEntity;
 import br.com.lojagames.Domain.Entity.ProdutoEntity;
 import br.com.lojagames.Domain.Interfaces.IRepository;
@@ -142,6 +143,31 @@ if(rs.next()){
             list.add(imagem);
         }
         return list;
+    }
+    
+    @Override
+    public List<FaqEntity> listaFaq(int idProduto, Connection connection) throws SQLException{
+        StringBuilder query = new StringBuilder();
+        List<FaqEntity> list = new ArrayList<>();
+        
+
+        query.append("select * from faq where idProduto = ?");
+        this.prepareStatement = connection.prepareStatement(query.toString());
+         prepareStatement.setInt(1,idProduto);
+
+        ResultSet rs = prepareStatement.executeQuery();
+        while (rs.next()) {
+            FaqEntity faq = new FaqEntity();
+            faq.setIdFaq(rs.getInt(1));
+            faq.setIdProduto(rs.getInt(2));
+            faq.setPergunta(rs.getString(3));
+            faq.setResposta(rs.getString(4));
+          
+                  list.add(faq);
+        }
+        return list;
+    
+    
     }
 
 

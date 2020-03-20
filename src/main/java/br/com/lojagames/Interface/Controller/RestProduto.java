@@ -41,7 +41,7 @@ public class RestProduto {
     public String getList() {
         ProdutoModel produto = new ProdutoModel();
 
-        return this.gson.toJson(this.iProdutoServices.listarProdutos());
+        return this.gson.toJson(this.iProdutoServices.listarProdutosFaq());
     }
 
     //  @Safe

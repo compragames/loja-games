@@ -118,23 +118,38 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
             return null;
         }
     }
-
-    private String[] inserirImagemAWS(File file1, File file2, File file3) {
-        String[] imagem = new String[3];
+@Override
+ public List<Model> listarProdutosFaq() {
+        List<Model> models = new ArrayList();
+        try {
+            getConnectOpen();
+            //rs =  iProdutoRepository.listaTodosProdutos(getConnect());
+            iProdutoRepository.listaTodosProdutos(getConnect()).forEach(item -> {
+                try {
+                    item.setImagens(iProdutoRepository.listaImagem(item.getIdProduto(),  getConnect()));
+                    System.out.println(item);
+                } catch (SQLException ex) {
+                    System.out.println("O erro ao listar imagem"+ex);
+                }
+               
+                try {
+                    item.setFaq(iProdutoRepository.listaFaq(item.getIdProduto(),  getConnect()));
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoServices.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                models.add(((ProdutoEntity)item).getModel());
+                
+            });
+            
         
-        if (file1 != null) {
-            UploadImageAWS updateImageAWS = new UploadImageAWS();
-            imagem[0] = updateImageAWS.upload(file1);
+            getConnectClose();
+            return models;
+        } catch (SQLException e) {
+            getConnectClose();
+            return null;
         }
-        if (file2 != null) {
-            UploadImageAWS updateImageAWS2 = new UploadImageAWS();
-            imagem[1] = updateImageAWS2.upload(file2);
-        }
-        if (file3 != null) {
-            UploadImageAWS updateImageAWS3 = new UploadImageAWS();
-            imagem[2] = updateImageAWS3.upload(file3);
-        }
-        return imagem;
     }
 
     @Override
