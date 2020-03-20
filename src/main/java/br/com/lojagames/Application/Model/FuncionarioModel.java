@@ -22,8 +22,8 @@ public class FuncionarioModel extends Model{
     private String endereco;
     private String cep;
     private String cpf;
-    private Timestamp dataNascimento;
-    private Timestamp dtInclusao;
+    private String dataNascimento;
+    private String dtInclusao;
     private String tipo;
 
     public FuncionarioModel() {
@@ -70,19 +70,19 @@ public class FuncionarioModel extends Model{
         this.cpf = cpf;
     }
 
-    public Timestamp getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Timestamp dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public Timestamp getDtInclusao() {
+    public String getDtInclusao() {
         return dtInclusao;
     }
 
-    public void setDtInclusao(Timestamp dtInclusao) {
+    public void setDtInclusao(String dtInclusao) {
         this.dtInclusao = dtInclusao;
     }
 
@@ -106,7 +106,7 @@ public class FuncionarioModel extends Model{
         fe.setCpf(cpf);
         fe.setDataNascimento(dataNascimento);
         fe.setDtInclusao(dtInclusao);
-        
+        fe.setTipo(tipo);
         return fe;
     }
     
