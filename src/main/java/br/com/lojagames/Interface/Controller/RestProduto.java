@@ -16,6 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
@@ -42,6 +43,7 @@ public class RestProduto {
         ProdutoModel produto = new ProdutoModel();
 
         return this.gson.toJson(this.iProdutoServices.listarProdutosFaq());
+        
     }
 
     //  @Safe

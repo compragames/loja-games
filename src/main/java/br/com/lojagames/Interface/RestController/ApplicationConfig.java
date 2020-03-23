@@ -11,6 +11,7 @@ public class ApplicationConfig extends ResourceConfig {
     public ApplicationConfig() {
         register(new AplicationBinder());
         addRest();
+        register(CORSResponseFilter.class);
         property(ServerProperties.METAINF_SERVICES_LOOKUP_DISABLE, true);
 
     }
