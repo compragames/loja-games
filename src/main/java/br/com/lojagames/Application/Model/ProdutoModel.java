@@ -13,7 +13,7 @@ import java.util.List;
 public class ProdutoModel extends Model {
 
     private ProdutoEntity produtoEntity;
-
+// esses são os campos do gson
     private int idProduto;
     private String title;
     private String description;
@@ -102,6 +102,7 @@ public class ProdutoModel extends Model {
     @Override
     public Entity getEntity() {
         produtoEntity = new ProdutoEntity();
+        produtoEntity.setIdProduto(idProduto);
         produtoEntity.setNome(title);
         produtoEntity.setPlataforma(platform);
         produtoEntity.setValorUnitario(price);

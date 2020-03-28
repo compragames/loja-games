@@ -61,7 +61,19 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
 
     @Override
     public Model modificarProduto(ProdutoModel produto, Token token) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ReturnModel retorno = new ReturnModel();
+        try {
+
+            getConnectOpen();
+
+            return retorno;
+
+        } catch (SQLException e) {
+            getConnectClose();
+            retorno.setRetorno(false);
+            retorno.setTxtRetorno("Erro ao tentar editar produto");
+            return retorno;
+        }
     }
 
     @Override
@@ -177,6 +189,30 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
         }    
     
     
+    }
+
+    @Override
+    public Model modificarProduto(ProdutoModel produto, String token) {
+        ReturnModel retorno = new ReturnModel();
+        try {
+            //verifica o token 
+            //verifica permissao
+            getConnectOpen();
+            int id = iProdutoRepository.modificandoProduto((ProdutoEntity) produto.getEntity(), getConnect());
+                    
+
+            retorno.setRetorno(true);
+            retorno.setTxtRetorno("Produto editado com sucesso");
+            retorno.setId(id);
+            getConnectClose();
+            return retorno;
+
+        } catch (SQLException e) {
+            getConnectClose();
+            retorno.setRetorno(false);
+            retorno.setTxtRetorno("Erro ao tentar editar produto");
+            return retorno;
+        }
     }
 
 }
