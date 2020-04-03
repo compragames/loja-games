@@ -17,7 +17,10 @@ import java.util.List;
  */
 public interface IClienteRepository {
     
-    public int inserir(ClienteEntity cliente, Connection conexao) throws SQLException;
+    
+    public int inserirUsuario(ClienteEntity cliente,int usuario, Connection conexao) throws SQLException;
+    
+    public int vincularUsuarioCliente(ClienteEntity cliente,int usuario, Connection conexao) throws SQLException;
     
     public List<ClienteEntity> listarClientes(Connection conexao) throws SQLException;
     

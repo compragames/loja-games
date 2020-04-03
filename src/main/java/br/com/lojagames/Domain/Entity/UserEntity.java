@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.lojagames.Domain.Entity;
 
 import br.com.lojagames.Application.Model.Model;
@@ -17,13 +12,27 @@ public class UserEntity extends Entity {
     private UsuarioModel userModel;
 
     // private UsuarioModel userModel;
-    private int id;
+   private int id;
     private String nome;
     private String login;
     private String senha;
-    private String emailAlternativo;
-    private String confereSenha;
-    private String dataCri;
+    private String ultimoLogin;
+
+    public String getUltimoLogin() {
+        return ultimoLogin;
+    }
+
+    public void setUltimoLogin(String ultimoLogin) {
+        this.ultimoLogin = ultimoLogin;
+    }
+
+    public boolean isIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
     private String token;
     private boolean isAdmin;
 
@@ -33,21 +42,16 @@ public class UserEntity extends Entity {
     public UserEntity(UsuarioModel userModel) {
         this.id = userModel.getId();
         this.nome = userModel.getNome();
-        this.login = userModel.getLogin();
-        this.senha = userModel.getSenha();
-        this.emailAlternativo = userModel.getEmailAlternativo();
-        this.confereSenha = userModel.getConfereSenha();
-        this.dataCri = userModel.getDataCri();
+        this.login = userModel.getEmail();
+        this.senha = userModel.getPassword();
+     }
 
-    }
-
-    public UserEntity(int id, String nome, String login, String senha, String cnpj, String emailAlternativo) {
+    public UserEntity(int id, String nome, String login, String senha, String cnpj) {
         this.id = id;
         this.nome = nome;
         this.login = login;
         this.senha = senha;
-        this.emailAlternativo = emailAlternativo;
-    }
+          }
 
     public int getId() {
         return id;
@@ -81,30 +85,6 @@ public class UserEntity extends Entity {
         this.senha = senha;
     }
 
-    public String getEmailAlternativo() {
-        return emailAlternativo;
-    }
-
-    public void setEmailAlternativo(String emailAlternativo) {
-        this.emailAlternativo = emailAlternativo;
-    }
-
-    public String getConfereSenha() {
-        return confereSenha;
-    }
-
-    public void setConfereSenha(String confereSenha) {
-        this.confereSenha = confereSenha;
-    }
-
-    public String getDataCri() {
-        return dataCri;
-    }
-
-    public void setDataCri(String dataCri) {
-        this.dataCri = dataCri;
-    }
-
     public String getToken() {
         return token;
     }
@@ -124,13 +104,10 @@ public class UserEntity extends Entity {
     @Override
     public Model getModel() {
         userModel = new UsuarioModel();
-        userModel.setConfereSenha(confereSenha);
-        userModel.setDataCri(dataCri);
-        userModel.setEmailAlternativo(emailAlternativo);
         userModel.setId(id);
-        userModel.setLogin(login);
+        userModel.setEmail(login);
         userModel.setNome(nome);
-        userModel.setSenha(senha);
+        userModel.setPassword(senha);
         userModel.setToken(token);
         return userModel;
     }

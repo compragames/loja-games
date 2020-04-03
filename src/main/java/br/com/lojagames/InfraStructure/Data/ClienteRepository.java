@@ -20,12 +20,12 @@ import java.util.List;
 public class ClienteRepository extends IRepository implements IClienteRepository {
 
     @Override
-    public int inserir(ClienteEntity cliente, Connection conexao) throws SQLException {
+    public int vincularUsuarioCliente(ClienteEntity cliente,int usuario, Connection conexao) throws SQLException {
         StringBuilder sql = new StringBuilder();        
         Timestamp ts = Timestamp.valueOf(cliente.getDataNascimento());
         System.out.println(ts);
         sql.append("INSERT INTO CLIENTE "
-                + "(NOME, CPF, CNPJ, DATANASCIMENTO, TELEFONE, EMAIL, ENDERECO, CEP, TIPO)"
+                + "(NOME, CPF, CNPJ, DATANASCIMENTO, TELEFONE, EMAIL, ENDERECO, CEP, USUARIO)"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
        this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
         prepareStatement.setString(1, cliente.getNome());
@@ -36,7 +36,7 @@ public class ClienteRepository extends IRepository implements IClienteRepository
         prepareStatement.setString(6, cliente.getEmail());
         prepareStatement.setString(7, cliente.getEndereco());
         prepareStatement.setString(8, cliente.getCep());
-        prepareStatement.setString(9, cliente.getTipo());
+        prepareStatement.setInt(9, usuario);
 
         prepareStatement.setString(10, cliente.getDataInclusao());
         this.prepareStatement.executeUpdate();
@@ -75,7 +75,7 @@ public class ClienteRepository extends IRepository implements IClienteRepository
             clienteEntity.setEmail(rs.getString(7));
             clienteEntity.setEndereco(rs.getString(8));
             clienteEntity.setCep(rs.getString(9));
-            clienteEntity.setTipo(rs.getString(10));
+            clienteEntity.setUsuario(rs.getInt(10));
 
             clienteEntity.setDataInclusao(rs.getTimestamp(11).toString());
             listaClientes.add(clienteEntity);
@@ -101,7 +101,7 @@ public class ClienteRepository extends IRepository implements IClienteRepository
         System.out.println(ts);
         sql.append("UPDATE CLIENTE "
                 + "SET NOME = ?, CPF = ?, CNPJ = ?, DATANASCIMENTO = ?, "
-                + "TELEFONE = ?, EMAIL = ?, ENDERECO = ?, CEP = ?, TIPO = ?"
+                + "TELEFONE = ?, EMAIL = ?, ENDERECO = ?, CEP = ?, USUARIO = ?"
                 + "WHERE IDCLIENTE = ?");
        this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
         prepareStatement.setString(1, cliente.getNome());
@@ -112,7 +112,7 @@ public class ClienteRepository extends IRepository implements IClienteRepository
         prepareStatement.setString(6, cliente.getEmail());
         prepareStatement.setString(7, cliente.getEndereco());
         prepareStatement.setString(8, cliente.getCep());
-        prepareStatement.setString(9, cliente.getTipo());
+        prepareStatement.setInt(9, cliente.getUsuario());
 
         prepareStatement.setString(10, cliente.getDataInclusao());// converter para timestamp
         prepareStatement.setInt(11, cliente.getIdCliente());
@@ -121,5 +121,32 @@ public class ClienteRepository extends IRepository implements IClienteRepository
         
         return cliente.getIdCliente();
     }
+
+    @Override
+    public int inserirUsuario(ClienteEntity cliente, int usuario, Connection conexao) throws SQLException {
+   StringBuilder sql = new StringBuilder();        
+        Timestamp ts = Timestamp.valueOf(cliente.getDataNascimento());
+        System.out.println(ts);
+        sql.append("INSERT INTO USUARIO "
+                + "(NIVEL, LOGIN, SENHA)"
+                + " VALUES (?, ?, ?)");
+       this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+        prepareStatement.setInt(1, usuario);
+        prepareStatement.setString(2, cliente.getEmail());
+        prepareStatement.setString(3, cliente.getSenha());
+   
+
+        prepareStatement.setString(10, cliente.getDataInclusao());
+        this.prepareStatement.executeUpdate();
+        
+        final ResultSet rs = this.prepareStatement.getGeneratedKeys();
+        
+        if (rs.next()) 
+            cliente.setIdCliente(rs.getInt(1));
+        
+        return rs.getInt(1);
+    }
+
+  
     
 }

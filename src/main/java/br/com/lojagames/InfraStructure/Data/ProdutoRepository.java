@@ -66,7 +66,12 @@ public class ProdutoRepository extends IRepository implements IProdutoRepository
 
     @Override
     public int modificandoProduto(ProdutoEntity produto, Connection conexao) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            StringBuilder query = new StringBuilder();
+        this.prepareStatement = conexao.prepareStatement(query.toString());  
+        query.append("select * from produto");
+        this.prepareStatement = conexao.prepareStatement(query.toString());
+        
+        return 0;
     }
 
     @Override
