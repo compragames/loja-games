@@ -19,7 +19,7 @@ import javax.xml.bind.DatatypeConverter;
  */
 public class TokenPreferences extends TokenPreferencesAbstract {
 
-    private static final String KEY = "flatZyroT";
+    private static final String KEY = "nossakey";
 
     @Override
     public boolean codificarToken(String token) {

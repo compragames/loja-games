@@ -52,7 +52,7 @@ public class RestCliente {
     @Path("insert")
     public String insert(String content) {
         ClienteModel cliente = (ClienteModel) this.gson.fromJson(content, ClienteModel.class);
-        return this.gson.toJson(this.iClienteServices.cadastrarCliente(cliente, ""));
+        return this.gson.toJson(this.iClienteServices.cadastrarCliente(cliente));
     }
     
     @POST

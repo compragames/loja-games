@@ -26,9 +26,10 @@ public class FuncionarioRepository extends IRepository implements IFuncionarioRe
     public int inserir(FuncionarioEntity funcionario, Connection conexao) throws SQLException {
         Timestamp tsDtNascimento = Timestamp.valueOf(funcionario.getDataNascimento());
         Timestamp tsDtInclusao = Timestamp.valueOf(funcionario.getDtInclusao());
+        
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO FUNCIONARIO "
-                + "(NOME, ENDERECO, CEP, CPF, DATANASCIMENTO, DTINCLUSAO, TIPO)"
+                + "(NOME, ENDERECO, CEP, CPF, DATANASCIMENTO, DATAINCLUSAO, USUARIO)"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?)");
         this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
         prepareStatement.setString(1, funcionario.getNome());
@@ -37,7 +38,7 @@ public class FuncionarioRepository extends IRepository implements IFuncionarioRe
         prepareStatement.setString(4, funcionario.getCpf());
         prepareStatement.setTimestamp(5, tsDtNascimento);
         prepareStatement.setTimestamp(6, tsDtInclusao);
-        prepareStatement.setString(7, funcionario.getTipo());
+        prepareStatement.setInt(7, funcionario.getIdfuncionario());
         this.prepareStatement.executeUpdate();
         
         final ResultSet rs = this.prepareStatement.getGeneratedKeys();

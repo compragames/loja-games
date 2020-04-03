@@ -11,6 +11,7 @@ public class ApplicationConfig extends ResourceConfig {
     public ApplicationConfig() {
         register(new AplicationBinder());
         addRest();
+        register(CORSResponseFilter.class);
         property(ServerProperties.METAINF_SERVICES_LOOKUP_DISABLE, true);
 
     }
@@ -19,6 +20,7 @@ public class ApplicationConfig extends ResourceConfig {
         register(br.com.lojagames.Interface.Controller.RestProduto.class);
         register(br.com.lojagames.Interface.Controller.RestCliente.class);
         register(br.com.lojagames.Interface.Controller.RestFuncionario.class);
+        register(br.com.lojagames.Interface.Controller.RestAcesso.class);
         register(org.glassfish.jersey.server.wadl.internal.WadlResource.class);
         register(MultiPartFeature.class);
     }

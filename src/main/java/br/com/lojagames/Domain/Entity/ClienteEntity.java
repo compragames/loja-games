@@ -16,6 +16,14 @@ import java.sql.Timestamp;
 public class ClienteEntity extends Entity {
 
     ClienteModel clienteModel;
+
+    public int getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
+    }
     
     private int idCliente;
     private String nome;
@@ -26,7 +34,16 @@ public class ClienteEntity extends Entity {
     private String email;
     private String endereco;
     private String cep;
-    private String tipo;
+    private int usuario;
+    private String senha;
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     private String datainclusao;
 
@@ -116,14 +133,7 @@ public class ClienteEntity extends Entity {
         this.cep = cep;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-    
     @Override
     public Model getModel() {
         clienteModel = new ClienteModel();
@@ -136,7 +146,8 @@ public class ClienteEntity extends Entity {
         clienteModel.setEmail(email);
         clienteModel.setEndereco(endereco);
         clienteModel.setCep(cep);
-        clienteModel.setTipo(tipo);
+        clienteModel.setUsuario(usuario);
+        clienteModel.setSenha(senha);
 
         clienteModel.setDataInclusao(datainclusao);
 

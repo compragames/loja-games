@@ -33,15 +33,25 @@ public class ClienteServices extends Services implements IClienteServices<Model>
     private ResultSet rs = null;
 
     @Override
-    public Model cadastrarCliente(ClienteModel cliente, Token token) {
+    public Model cadastrarCliente(ClienteModel cliente) {
 
         ReturnModel retorno = new ReturnModel();
 
         try {
             getConnectOpen();
 
+            // O NUMERO 3 REPRESENTA O USUARIO NIVEL DE ACESSO CLIENTE
+            int user = iClienteRepository.inserirUsuario((ClienteEntity) cliente.getEntity(), 3, getConnect());
+            int id = iClienteRepository.vincularUsuarioCliente((ClienteEntity) cliente.getEntity(), user, getConnect());
+
+            cliente.setIdCliente(id);
+            getConnectClose();
+            retorno.setRetorno(true);
+            retorno.setTxtRetorno("Cliente cadastrado com sucesso");
+            retorno.setId(id);
             return retorno;
         } catch (SQLException ex) {
+            System.out.println(ex);
             getConnectClose();
             retorno.setRetorno(false);
             retorno.setTxtRetorno("Erro ao tentar cadastrar cliente");
@@ -82,32 +92,10 @@ public class ClienteServices extends Services implements IClienteServices<Model>
         }
     }
 
-    @Override
-    public Model cadastrarCliente(ClienteModel cliente, String token) {
-
-        ReturnModel retorno = new ReturnModel();
-
-        try {
-            getConnectOpen();
-            int id = iClienteRepository.inserir((ClienteEntity) cliente.getEntity(), getConnect());
-            cliente.setIdCliente(id);
-            getConnectClose();
-            retorno.setRetorno(true);
-            retorno.setTxtRetorno("Cliente cadastrado com sucesso");
-            retorno.setId(id);
-            return retorno;
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            getConnectClose();
-            retorno.setRetorno(false);
-            retorno.setTxtRetorno("Erro ao tentar cadastrar cliente");
-            return retorno;
-        }
-    }
 
     @Override
     public Model editarCliente(ClienteModel cliente, String token) {
-        
+
         ReturnModel retorno = new ReturnModel();
 
         try {
@@ -127,5 +115,7 @@ public class ClienteServices extends Services implements IClienteServices<Model>
             return retorno;
         }
     }
+
+
 
 }

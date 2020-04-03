@@ -1,6 +1,7 @@
 package br.com.lojagames.Domain.Interfaces;
 
 import br.com.lojagames.Domain.Entity.Entity;
+import br.com.lojagames.Domain.Entity.FaqEntity;
 import br.com.lojagames.Domain.Entity.ImagemEntity;
 import br.com.lojagames.Domain.Entity.ProdutoEntity;
 import java.io.File;
@@ -10,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-
 /**
  *
  * @author Victor
@@ -18,17 +18,20 @@ import java.util.List;
 public interface IProdutoRepository {
 
     public int inserir(ProdutoEntity produto, Connection conexao) throws SQLException;
-     public int inserirImagem(int id,String file, Connection conexao) throws SQLException;
-        
+
+    public int inserirImagem(int id, String file, Connection conexao) throws SQLException;
 
     public ResultSet buscaEstoque(Connection conexao, ProdutoEntity productEntity) throws SQLException;
 
     public void deletar(ProdutoEntity produto, Connection conexao) throws SQLException;
-        
-    public abstract List<ProdutoEntity> listaTodosProdutos(Connection connection) throws SQLException;
-      public abstract List<ImagemEntity> listaImagem(int idProduto,Connection connection) throws SQLException;
 
-    public void modificandoFoto(ProdutoEntity produto, InputStream fileInputStream, Connection conexao) throws SQLException;
+    public abstract List<ProdutoEntity> listaTodosProdutos(Connection connection) throws SQLException;
+
+    public abstract List<ImagemEntity> listaImagem(int idProduto, Connection connection) throws SQLException;
+
+    public abstract List<FaqEntity> listaFaq(int idProduto, Connection connection) throws SQLException;
+
+    public void modificarImagem(ProdutoEntity produto, InputStream fileInputStream, Connection conexao) throws SQLException;
 
     public int modificandoProduto(ProdutoEntity produto, Connection conexao) throws SQLException;
 

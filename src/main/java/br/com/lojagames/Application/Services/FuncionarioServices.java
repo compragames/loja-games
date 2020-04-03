@@ -12,6 +12,7 @@ import br.com.lojagames.Application.Model.Model;
 import br.com.lojagames.Application.Model.ReturnModel;
 import br.com.lojagames.Domain.Entity.FuncionarioEntity;
 import br.com.lojagames.Domain.Interfaces.IFuncionarioRepository;
+import br.com.lojagames.Domain.Interfaces.IUserRepository;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,9 @@ public class FuncionarioServices extends Services implements IFuncionarioService
 
     @Inject
     private IFuncionarioRepository iFuncionarioRepository;
+    
+    @Inject
+    private IUserRepository userRepo;
 
     public FuncionarioServices() {
     }
@@ -34,8 +38,12 @@ public class FuncionarioServices extends Services implements IFuncionarioService
     @Override
     public Model cadastroFuncionario(FuncionarioModel funcionario, Token token) {
         ReturnModel retorno = new ReturnModel();
+        int idAdministrador = 1;
         try{
             getConnectOpen();
+          int id =   userRepo.inserirUsuario((FuncionarioEntity)funcionario.getEntity(), idAdministrador, getConnect());
+          funcionario.setIdfuncionario(id);
+          iFuncionarioRepository.inserir((FuncionarioEntity)funcionario.getEntity(), getConnect());
             return retorno;
         } catch (SQLException e) {
             getConnectClose();
@@ -113,25 +121,20 @@ public class FuncionarioServices extends Services implements IFuncionarioService
     
     @Override
     public Model cadastroFuncionario(FuncionarioModel funcionario, String token) {
-        
-        ReturnModel retorno = new ReturnModel();
-        
-        try {
-            getConnectOpen();            
-            int id = iFuncionarioRepository.inserir((FuncionarioEntity) funcionario.getEntity(), getConnect());
-            funcionario.setIdfuncionario(id);
-            getConnectClose();
-            retorno.setRetorno(true);
-            retorno.setTxtRetorno("Funcionario cadastrado com sucesso");
-            retorno.setId(id);            
-            return retorno;            
-        } catch (SQLException ex) {
+       ReturnModel retorno = new ReturnModel();
+        int idAdministrador = 1;
+        try{
+            getConnectOpen();
+          int id =   userRepo.inserirUsuario((FuncionarioEntity)funcionario.getEntity(), idAdministrador, getConnect());
+          funcionario.setIdfuncionario(id);
+          iFuncionarioRepository.inserir((FuncionarioEntity)funcionario.getEntity(), getConnect());
+            return retorno;
+        } catch (SQLException e) {
             getConnectClose();
             retorno.setRetorno(false);
             retorno.setTxtRetorno("Erro ao tentar cadastrar funcionario");
             return retorno;
-        }        
-    }
+        }}
     
     
 }

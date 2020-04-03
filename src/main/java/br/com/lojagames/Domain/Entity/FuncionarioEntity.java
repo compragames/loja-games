@@ -22,6 +22,24 @@ public class FuncionarioEntity extends Entity {
     private String dataNascimento;
     private String dtInclusao;
     private String tipo;
+    private String email;
+    private String password;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public FuncionarioEntity() {
     }
@@ -97,6 +115,8 @@ public class FuncionarioEntity extends Entity {
             
         fm.setIdfuncionario(idfuncionario);
         fm.setNome(nome);
+        fm.setEmail(email);
+        fm.setPassword(password);
         fm.setEndereco(endereco);
         fm.setCep(cep);
         fm.setCpf(cpf);

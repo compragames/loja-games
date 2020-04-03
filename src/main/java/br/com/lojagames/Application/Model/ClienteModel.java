@@ -21,7 +21,16 @@ public class ClienteModel extends Model {
     private String email;
     private String endereco;
     private String cep;
-    private String tipo;
+    private int usuario;
+    private String senha;
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
     private String datainclusao;
    
 
@@ -108,13 +117,15 @@ public class ClienteModel extends Model {
         this.cep = cep;
     }
 
-    public String getTipo() {
-        return tipo;
+    public int getUsuario() {
+        return usuario;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
     }
+
+  
 
     @Override
     public Entity getEntity() {
@@ -128,8 +139,9 @@ public class ClienteModel extends Model {
         clienteEntity.setEmail(email);
         clienteEntity.setEndereco(endereco);
         clienteEntity.setCep(cep);
-        clienteEntity.setTipo(tipo);
+        clienteEntity.setUsuario(usuario);
         clienteEntity.setDataInclusao(datainclusao);
+        clienteEntity.setSenha(senha);
 
         return clienteEntity;        
     }

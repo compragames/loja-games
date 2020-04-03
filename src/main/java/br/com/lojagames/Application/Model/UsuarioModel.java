@@ -11,17 +11,58 @@ public class UsuarioModel extends Model {
 
     private int id;
     private String nome;
-    private String login;
-    private String senha;
-    private String emailAlternativo;
-    private String confereSenha;
-    private String dataCri;
+    private String email;
+    private String password;
+    private String ultimoLogin;
+    private boolean provider;
     private String token;
     private boolean isAdmin;
+    private String nivel;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUltimoLogin() {
+        return ultimoLogin;
+    }
+
+    public void setUltimoLogin(String ultimoLogin) {
+        this.ultimoLogin = ultimoLogin;
+    }
+
+    public boolean isProvider() {
+        return provider;
+    }
+
+    public void setProvider(boolean provider) {
+        this.provider = provider;
+    }
+  
+
+    public String getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
+    }
 
     private UserEntity userEntity;
 
-    public int getId() {
+    public int getId()  {
         return id;
     }
 
@@ -37,45 +78,6 @@ public class UsuarioModel extends Model {
         this.nome = nome;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getEmailAlternativo() {
-        return emailAlternativo;
-    }
-
-    public void setEmailAlternativo(String emailAlternativo) {
-        this.emailAlternativo = emailAlternativo;
-    }
-
-    public String getConfereSenha() {
-        return confereSenha;
-    }
-
-    public void setConfereSenha(String confereSenha) {
-        this.confereSenha = confereSenha;
-    }
-
-    public String getDataCri() {
-        return dataCri;
-    }
-
-    public void setDataCri(String dataCri) {
-        this.dataCri = dataCri;
-    }
 
     public String getToken() {
         return token;
@@ -96,12 +98,11 @@ public class UsuarioModel extends Model {
     @Override
     public Entity getEntity() {
         userEntity = new UserEntity();
-        userEntity.setConfereSenha(confereSenha);
-        userEntity.setDataCri(dataCri);
-        userEntity.setLogin(login);
+        userEntity.setLogin(email);
         userEntity.setNome(nome);
-        userEntity.setSenha(senha);
+        userEntity.setSenha(password);
         userEntity.setToken(token);
+        
 
         return userEntity;
 

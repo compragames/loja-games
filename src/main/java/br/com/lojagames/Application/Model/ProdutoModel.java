@@ -1,6 +1,7 @@
 package br.com.lojagames.Application.Model;
 
 import br.com.lojagames.Domain.Entity.Entity;
+import br.com.lojagames.Domain.Entity.FaqEntity;
 import br.com.lojagames.Domain.Entity.ImagemEntity;
 import br.com.lojagames.Domain.Entity.ProdutoEntity;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 public class ProdutoModel extends Model {
 
     private ProdutoEntity produtoEntity;
-
+// esses são os campos do gson
     private int idProduto;
     private String title;
     private String description;
@@ -20,12 +21,29 @@ public class ProdutoModel extends Model {
     private int qtdEstoque;
     private double price;
     private List<ImagemEntity>imagens;
+    private List<FaqEntity> faq;
 
     public ProdutoModel() {
     }
 
     public int getIdProduto() {
         return idProduto;
+    }
+
+    public List<ImagemEntity> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(List<ImagemEntity> imagens) {
+        this.imagens = imagens;
+    }
+
+    public List<FaqEntity> getFaq() {
+        return faq;
+    }
+
+    public void setFaq(List<FaqEntity> faq) {
+        this.faq = faq;
     }
 
     public void setIdProduto(int id) {
@@ -84,6 +102,7 @@ public class ProdutoModel extends Model {
     @Override
     public Entity getEntity() {
         produtoEntity = new ProdutoEntity();
+        produtoEntity.setIdProduto(idProduto);
         produtoEntity.setNome(title);
         produtoEntity.setPlataforma(platform);
         produtoEntity.setValorUnitario(price);
@@ -97,5 +116,8 @@ public class ProdutoModel extends Model {
     public void getImagens(List<ImagemEntity> imagens) {
     this.imagens = imagens;   
     }
+
+    public void getFaq(List<FaqEntity> faq) {
+       this.faq = faq;  }
 
 }

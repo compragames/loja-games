@@ -61,7 +61,19 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
 
     @Override
     public Model modificarProduto(ProdutoModel produto, Token token) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ReturnModel retorno = new ReturnModel();
+        try {
+
+            getConnectOpen();
+
+            return retorno;
+
+        } catch (SQLException e) {
+            getConnectClose();
+            retorno.setRetorno(false);
+            retorno.setTxtRetorno("Erro ao tentar editar produto");
+            return retorno;
+        }
     }
 
     @Override
@@ -118,23 +130,38 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
             return null;
         }
     }
-
-    private String[] inserirImagemAWS(File file1, File file2, File file3) {
-        String[] imagem = new String[3];
+@Override
+ public List<Model> listarProdutosFaq() {
+        List<Model> models = new ArrayList();
+        try {
+            getConnectOpen();
+            //rs =  iProdutoRepository.listaTodosProdutos(getConnect());
+            iProdutoRepository.listaTodosProdutos(getConnect()).forEach(item -> {
+                try {
+                    item.setImagens(iProdutoRepository.listaImagem(item.getIdProduto(),  getConnect()));
+                    System.out.println(item);
+                } catch (SQLException ex) {
+                    System.out.println("O erro ao listar imagem"+ex);
+                }
+               
+                try {
+                    item.setFaq(iProdutoRepository.listaFaq(item.getIdProduto(),  getConnect()));
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoServices.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                models.add(((ProdutoEntity)item).getModel());
+                
+            });
+            
         
-        if (file1 != null) {
-            UploadImageAWS updateImageAWS = new UploadImageAWS();
-            imagem[0] = updateImageAWS.upload(file1);
+            getConnectClose();
+            return models;
+        } catch (SQLException e) {
+            getConnectClose();
+            return null;
         }
-        if (file2 != null) {
-            UploadImageAWS updateImageAWS2 = new UploadImageAWS();
-            imagem[1] = updateImageAWS2.upload(file2);
-        }
-        if (file3 != null) {
-            UploadImageAWS updateImageAWS3 = new UploadImageAWS();
-            imagem[2] = updateImageAWS3.upload(file3);
-        }
-        return imagem;
     }
 
     @Override
@@ -162,6 +189,30 @@ public class ProdutoServices extends Services implements IProdutoServices<Model>
         }    
     
     
+    }
+
+    @Override
+    public Model modificarProduto(ProdutoModel produto, String token) {
+        ReturnModel retorno = new ReturnModel();
+        try {
+            //verifica o token 
+            //verifica permissao
+            getConnectOpen();
+            int id = iProdutoRepository.modificandoProduto((ProdutoEntity) produto.getEntity(), getConnect());
+                    
+
+            retorno.setRetorno(true);
+            retorno.setTxtRetorno("Produto editado com sucesso");
+            retorno.setId(id);
+            getConnectClose();
+            return retorno;
+
+        } catch (SQLException e) {
+            getConnectClose();
+            retorno.setRetorno(false);
+            retorno.setTxtRetorno("Erro ao tentar editar produto");
+            return retorno;
+        }
     }
 
 }
