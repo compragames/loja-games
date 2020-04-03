@@ -22,17 +22,19 @@ public class UserRepository extends IRepository implements IUserRepository {
         UsuarioModel usuario = new UsuarioModel();
         StringBuilder sql = new StringBuilder();
         sql.append("select * from USUARIO WHERE LOGIN = ? AND SENHA = ?");
-        this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+        this.prepareStatement = conexao.prepareStatement(sql.toString());
         this.prepareStatement.setString(1, user);
         this.prepareStatement.setString(2,password);
 
-        this.prepareStatement.executeUpdate();
+        ResultSet rs = prepareStatement.executeQuery();
         // generate key devolve a key que foi gerada no banco
-        final ResultSet rs = this.prepareStatement.getGeneratedKeys();
-        usuario.setNome(rs.getNString(1));
-        usuario.setNivel(rs.getNString(2));
-        if (rs.next()) {
-            System.out.println("USUARIO COM DADOS DUPLICADOS");
+       
+       
+      if (rs.next()) {
+            usuario.setNome(rs.getString(3));
+        usuario.setNivel(rs.getString(2));
+
+            
         }
         return usuario;
     }
