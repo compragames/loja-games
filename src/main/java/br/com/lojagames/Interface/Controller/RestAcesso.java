@@ -18,7 +18,7 @@ import javax.ws.rs.core.UriInfo;
 
 
 
-@Path("/session")
+@Path("session")
 public class RestAcesso {
     
     private final IUserServices iUserServices;
