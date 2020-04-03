@@ -3,7 +3,6 @@ package br.com.lojagames.InfraStructure.Data;
 import br.com.lojagames.Application.Model.UsuarioModel;
 import br.com.lojagames.Domain.Entity.ClienteEntity;
 import br.com.lojagames.Domain.Entity.FuncionarioEntity;
-import br.com.lojagames.Domain.Entity.UserEntity;
 import br.com.lojagames.Domain.Interfaces.IRepository;
 import br.com.lojagames.Domain.Interfaces.IUserRepository;
 import java.sql.Connection;
@@ -85,11 +84,6 @@ public class UserRepository extends IRepository implements IUserRepository {
             f.setIdfuncionario(rs.getInt(1));
         
         return rs.getInt(1);   
-    }
-//metodos temporarios para a entrega abaixo.
-    @Override
-    public boolean inserirUsuario(UserEntity cadastro, int i, Connection connect) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
