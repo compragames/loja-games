@@ -35,7 +35,7 @@ public class ProdutoRepository extends IRepository implements IProdutoRepository
         prepareStatement.setString(2, produto.getPlataforma());
         prepareStatement.setDouble(3, produto.getQtdEstoque());
         prepareStatement.setDouble(4, produto.getValorUnitario());
-           prepareStatement.setString(5,produto.getDescricao());
+        prepareStatement.setString(5,produto.getDescricao());
         prepareStatement.setInt(6, produto.getIdEmpresa());
      
         prepareStatement.setTimestamp(7, dataDeHoje);
@@ -60,18 +60,31 @@ public class ProdutoRepository extends IRepository implements IProdutoRepository
     }
 
     @Override
-    public void modificandoFoto(ProdutoEntity produto, InputStream fileInputStream, Connection conexao) throws SQLException {
+    public void modificarImagem(ProdutoEntity produto, InputStream fileInputStream, Connection conexao) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public int modificandoProduto(ProdutoEntity produto, Connection conexao) throws SQLException {
-            StringBuilder query = new StringBuilder();
-        this.prepareStatement = conexao.prepareStatement(query.toString());  
-        query.append("select * from produto");
-        this.prepareStatement = conexao.prepareStatement(query.toString());
+        Timestamp dataDeHoje = new Timestamp(System.currentTimeMillis());
+        StringBuilder sql = new StringBuilder();
+        sql.append("UPDATE Produto "
+                + "SET NOME = ?, PLATAFORMA = ?, QTDESTOQUE = ?, VALORUNITARIO = ?, "
+                + "DESCRICAO = ?, IDEMPRESA = ?, DATAINCLUSAO = ? "
+                + "WHERE IDPRODUTO = ?");
+        this.prepareStatement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+        prepareStatement.setString(1, produto.getNome());
+        prepareStatement.setString(2, produto.getPlataforma());
+        prepareStatement.setDouble(3, produto.getQtdEstoque());
+        prepareStatement.setDouble(4, produto.getValorUnitario());
+        prepareStatement.setString(5,produto.getDescricao());
+        prepareStatement.setInt(6, produto.getIdEmpresa());     
+        prepareStatement.setTimestamp(7, dataDeHoje);
+        prepareStatement.setInt(8, produto.getIdProduto());
         
-        return 0;
+        this.prepareStatement.executeUpdate();
+        
+        return produto.getIdProduto();
     }
 
     @Override
@@ -115,7 +128,7 @@ public class ProdutoRepository extends IRepository implements IProdutoRepository
         this.prepareStatement.executeUpdate();
         // generate key devolve a key que foi gerada no banco
         final ResultSet rs = this.prepareStatement.getGeneratedKeys();
-if(rs.next()){
+        if(rs.next()){
 
            rs.getInt(1);
 
@@ -149,6 +162,8 @@ if(rs.next()){
         }
         return list;
     }
+    
+    
     
     @Override
     public List<FaqEntity> listaFaq(int idProduto, Connection connection) throws SQLException{

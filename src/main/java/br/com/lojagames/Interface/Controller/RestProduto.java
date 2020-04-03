@@ -54,10 +54,23 @@ public class RestProduto {
             @HeaderParam("Authorization") String header,
             String content
     ) {
+        // o retorno desse cara é uma string de produto model 
+        // o cara envia o json e vem pra gente no content, a gente faz ele virar um produto model
         //Token token = CreatedToken.decodeToken(header);
         ProdutoModel produtos = (ProdutoModel) this.gson.fromJson(content, ProdutoModel.class);
 
         return this.gson.toJson(this.iProdutoServices.cadastroProduto(produtos, ""));
+    }
+   
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("update")
+    public String updateProduto(
+            @HeaderParam("Authorization") String header,
+            String content
+    ) {
+        ProdutoModel produtos = (ProdutoModel) this.gson.fromJson(content, ProdutoModel.class);
+        return this.gson.toJson(this.iProdutoServices.modificarProduto(produtos, ""));
     }
 
     @POST
@@ -77,4 +90,20 @@ public class RestProduto {
         return this.gson.toJson(this.iProdutoServices.vincularImagemProduto(id, imagem, ""));
     }
 
+    @POST
+    @Consumes(MediaType.MULTIPART_FORM_DATA )
+    @Path("uimagem/{id}")
+    public String editarImagemProduto(
+            //@HeaderParam("Authorization") String header,
+            @PathParam("id") int id,
+            @FormDataParam("image") InputStream fileInputStream,
+            @FormDataParam("image") FormDataContentDisposition fileMetaData
+    ) {
+        //Token token = CreatedToken.decodeToken(header);
+        File file = new UploadImageAWS().bytesToImage(fileInputStream, fileMetaData);
+
+        String imagem = new UploadImageAWS().upload(file);
+
+        return this.gson.toJson(this.iProdutoServices.vincularImagemProduto(id, imagem, ""));
+    }
 }

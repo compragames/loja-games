@@ -14,15 +14,17 @@ public interface IProdutoServices<T> {
 
     public T vincularImagemProduto(int produto, String nomeImagem, String token);
 
-    public T deletarProduto(ProdutoModel produto, Token token);
-    
+    public T deletarProduto(ProdutoModel produto, Token token);    
 
     public List<T> listarProdutos();
-public List<T>  listarProdutosFaq();
+        
+    public List<T>  listarProdutosFaq();
+    
     public T modificarFoto(ProdutoModel produto, Token token, InputStream fileInputStream);
 
     public T modificarProduto(ProdutoModel produto, Token token);
+    
+    public T modificarProduto(ProdutoModel produto, String token);
 
     public T updateProduto(ProdutoModel produto, Token token);
-
 }

@@ -31,7 +31,7 @@ public interface IProdutoRepository {
 
     public abstract List<FaqEntity> listaFaq(int idProduto, Connection connection) throws SQLException;
 
-    public void modificandoFoto(ProdutoEntity produto, InputStream fileInputStream, Connection conexao) throws SQLException;
+    public void modificarImagem(ProdutoEntity produto, InputStream fileInputStream, Connection conexao) throws SQLException;
 
     public int modificandoProduto(ProdutoEntity produto, Connection conexao) throws SQLException;
 
