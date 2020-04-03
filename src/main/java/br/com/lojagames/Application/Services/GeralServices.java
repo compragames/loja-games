@@ -5,7 +5,7 @@
  */
 package br.com.lojagames.Application.Services;
 
-import br.com.lojagames.Application.Model.UserPost;
+import br.com.lojagames.Application.Model.temp.UserPost;
 
 /**
  *
