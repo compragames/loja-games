@@ -1,10 +1,18 @@
-package br.com.lojagames.Interface.Controller;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.lojagames.Interface.Controller.temp;
+
 
 
 import br.com.lojagames.Application.IService.IUserServices;
 import br.com.lojagames.Application.Model.ClienteModel;
 import br.com.lojagames.Application.Model.ProdutoModel;
 import br.com.lojagames.Application.Model.UsuarioModel;
+import br.com.lojagames.Application.Model.temp.UserPost;
+import br.com.lojagames.Application.Services.GeralServices;
 import com.google.gson.Gson;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -18,27 +26,26 @@ import javax.ws.rs.core.UriInfo;
 
 
 
-@Path("/session")
-public class RestAcesso {
+@Path("/geral")
+public class RestUsers {
     
-    private final IUserServices iUserServices;
+    private final GeralServices generalServices = new GeralServices();
     
     @Context
     private UriInfo context;
     private final Gson gson;
 
     @Inject
-    public RestAcesso(IUserServices iAcessoServices) {
-        this.iUserServices = iAcessoServices;
-        gson = new Gson();
+    public RestUsers() {
+         gson = new Gson();
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("login")
-    public String Login(String credenciais) {
-      //Token token = CreatedToken.decodeToken(header);
-      UsuarioModel usuario = (UsuarioModel) this.gson.fromJson(credenciais, UsuarioModel.class);
-        return this.gson.toJson(this.iUserServices.autenticar(usuario));
+    @Path("/users")
+    public String Login() {
+      
+    UserPost userPost = new UserPost();
+        return this.gson.toJson(this.generalServices.Post(userPost));
     }
 
   

@@ -92,7 +92,7 @@ public class RestProduto {
 
     @POST
     @Consumes(MediaType.MULTIPART_FORM_DATA )
-    @Path("uimagem/{id}")
+    @Path("imagem/{id}")
     public String editarImagemProduto(
             //@HeaderParam("Authorization") String header,
             @PathParam("id") int id,
