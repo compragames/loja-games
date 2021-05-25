@@ -10,5 +10,6 @@ Sistema e-commerce de games
 - Html
 - Css
 - Bootstrap
+- spring-boot framework
 - Tomcat 8.5
 - MySQL Workbanch
